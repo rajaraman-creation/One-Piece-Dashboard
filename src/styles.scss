@@ -1,1 +1,152 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/layout/styles/layout/layout.scss";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+@import "primeng/resources/primeng.min.css";
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+@tailwind components;
+// @tailwind utilities;
+
+@font-face {
+  font-family: "NorseBold";
+  src: url("./assets/fonts/NorseBold-2Kge.otf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Norse";
+  src: url("./assets/fonts/Norse-KaWl.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: 1rem;
+  // height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--surface-ground);
+  color: var(--text-color);
+  overflow-x: hidden;
+//   padding: 0;
+//   margin: 0;
+//   min-height: 100%;
+//   // overflow-y: hidden;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+}
+
+.p-timeline-event-opposite {
+  flex: 0 1 0% !important;
+  min-width: 0px !important;
+}
+
+.p-speeddial-action {
+    width: 2rem;
+    height: 2rem;
+}
+.p-speeddial-button.p-button.p-button-icon-only {
+    width: 2rem;
+    height: 2rem;
+}
+
+.p-inputotp-input {
+    text-align: center;
+    width: 2.5rem;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.star {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 1rem;
+  animation-duration: 1500ms;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+  position: absolute;
+  background-color: aliceblue;
+  width: 5px;
+  height: 5px;
+}
+
+.p-progressbar-label {
+  display: none !important;
+}
+
+@keyframes fall-1 {
+  0% {
+    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+    opacity: 0;
+  }
+  
+  5% {
+    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-2 {
+  0% {
+    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+    opacity: 0;
+  }
+  
+  10% {
+    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-3 {
+  0% {
+    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+    opacity: 0;
+  }
+  
+  15% {
+    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+:root{
+  --mdc-text-button-label-text-color:red!important;
+  --mdc-text-button-label-text-color:var(--blue-300);
+  --mat-datepicker-calendar-date-text-color:var(--blue-300);
+  --mat-datepicker-calendar-body-label-text-color:var(--blue-300);
+  --mat-datepicker-calendar-header-text-color:var(--blue-300);
+}

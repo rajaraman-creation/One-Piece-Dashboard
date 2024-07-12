@@ -1,0 +1,50 @@
+.p-inputotp {
+  display: flex;
+  justify-content: center;
+  gap: 13px; /* Space between the OTP inputs */
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure it takes full height of the parent */
+//   transform: translateY(-100px);
+}
+
+.login {
+  width: 90%;
+  height: 100vh;
+//   background-image: url("../../../../assets/images/img/cat.png");
+//   background-image: url("../../../../assets/images/img/space.png");
+  background-image: url("../../../../assets/images/img/spacebike.png");
+  background-size: contain; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+@media (min-width: 767px) {
+    .login {
+        width: 500px;
+        height: 110vh;
+    }
+  }
+
+  #username{
+    width: 250px;
+  }
+
+  .dot{
+    width: 2px;
+    height: 2px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  

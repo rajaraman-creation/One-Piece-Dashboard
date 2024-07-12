@@ -1,0 +1,62 @@
+<div (mousemove)="listenMouse($event)" id="mouseArea">
+  <p class="font-medium p-2" style="font-family: NorseBold; font-size: 3rem">
+    One Piece
+  </p>
+  <div class="grid" style="overflow: hidden">
+    <!-- <div class="col">
+        <div class="login"></div>
+    </div> -->
+    <div class="col">
+      <div class="flex-center">
+        <div class="card login">
+          <span>Log In</span>
+          <p style="font-weight: 600; font-size: 1.1rem">Welcome Back</p>
+
+          <div class="mb-3 mt-5 flex justify-content-center">
+            <p-floatLabel>
+              <input pInputText id="username" [(ngModel)]="value" />
+              <label for="username">Email</label>
+            </p-floatLabel>
+          </div>
+          <div class="flex justify-content-center">
+            <p-inputOtp [(ngModel)]="pin" [mask]="true"></p-inputOtp>
+          </div>
+          <div class="flex justify-content-end mt-4">
+            <p-button
+              label="Login"
+              [raised]="true"
+              severity="help"
+              routerLink="/home"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="grid">
+    <div style="height: 100vh; width: 108%">
+        
+      
+        <div class="flex-center" style="transform: translateY(-100px)">
+          <div style="width: 500px; height: 300px" class="card">
+            <span>Log In</span>
+            <p style="font-weight: 600">Welcome Back</p>
+      
+            <div class="mb-3 mt-5 flex justify-content-center">
+              <p-floatLabel>
+                <input pInputText id="username" [(ngModel)]="value" />
+                <label for="username">Email</label>
+              </p-floatLabel>
+            </div>
+            <div class="flex justify-content-center">
+              <p-inputOtp [(ngModel)]="pin" [mask]="true"></p-inputOtp>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="login">
+
+    </div>
+</div> -->

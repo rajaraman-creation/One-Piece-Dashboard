@@ -1,0 +1,27 @@
+<div class="layout-topbar">
+  <a class="layout-topbar-logo" routerLink="">
+    <i
+      class="pi pi-sparkles mb-2"
+      style="
+        font-size: 1.3rem;
+        color: 'var(--primary-color)';
+        transform: translateY(4px);
+      "
+    ></i>
+    <span class="layout-topbar-brand">One Piece</span>
+  </a>
+
+  <div #topbarmenu class="layout-topbar-menu">
+    <div class="flex justify-content-center">
+      <p-menu #menu [model]="items" [popup]="true" />
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+        styleClass="mr-1"
+        shape="circle"
+        (click)="menu.toggle($event)"
+      />
+    </div>
+  </div>
+</div>
+
+
