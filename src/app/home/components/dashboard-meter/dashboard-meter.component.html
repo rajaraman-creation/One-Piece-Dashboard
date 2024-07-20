@@ -1,20 +1,39 @@
-<div class="grid">
-  <div class="col-12 md:col-4" *ngFor="let data of dataSource">
-    <div class="card relative h-6rem border-round-xl p-3">
-      <span class="text-sm font-medium line-height-1">{{data.name}}</span>
+<div class="flex justify-content-center">
+  <p-selectButton
+    [options]="justifyOptions"
+    [(ngModel)]="value"
+    optionLabel="icon"
+  >
+    <ng-template let-item pTemplate>
+      <i [class]="item.icon"></i>
+    </ng-template>
+  </p-selectButton>
+</div>
+
+<div class="grid pt-3" *ngIf="value?.value == 'day'">
+  <div *ngFor="let data of dataSource">
+    <div
+      class="card relative h-6rem p-3"
+      style="width: 240px; margin: 0px 0px 8px 7px"
+    >
+      <span class="text-sm font-medium line-height-1">{{ data.name }}</span>
       <div class="flex justify-content-between">
         <div class="flex justify-content-between align-items-center">
           <div
             class="flex justify-content-center align-items-center h-2rem w-5rem border-round p-2 mr-3"
+            *ngIf="data.status"
             style="
               background-color: #fc6161;
+              background-color: #0bd18a;
               box-shadow: 0px 6px 20px rgba(252, 97, 97, 0.3);
+              box-shadow: 0px 6px 20px rgba(11, 209, 138, 0.3);
             "
           >
-            <i class="pi pi-arrow-down w-2rem"></i
-            ><span class="line-height-2">{{data.status}}</span>
+            <i class="pi pi-arrow-up w-2rem"></i
+            ><span class="line-height-2">{{ data.status }}</span>
           </div>
-          <div class="line-height-4 text-4xl">{{data.currentValue}}
+          <div class="line-height-4 text-4xl">
+            {{ data.currentValue }}
             <!-- <i class="pi pi-indian-rupee ml-2"></i> -->
           </div>
         </div>
@@ -26,9 +45,69 @@
       />
     </div>
   </div>
+</div>
 
+<div class="md:col-2" style="min-width: 250px" *ngIf="value?.value == 'staff'">
+  <div class="card p-0">
+    <div class="flex p-3" style="flex-direction: column">
+      <input type="text" pInputText placeholder="Find Staff" style="height: 1.8rem;"/>
+    </div>
 
-  <!-- <div class="col-12 md:col-4">
+    <div class="pb-3 pl-2 cursor-pointer">
+      <div class="flex" style="gap: 5px;align-items: flex-start;">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+          styleClass="mr-1"
+          shape="circle"
+        />
+        <div class="flex" style="justify-content: space-between;
+        width: 100%;
+        align-items: center;">
+          <p class="m-0 text-600 mr-2">Alex</p>
+          <div style="scale: 0.8">
+            <p-tag severity="info" value="Manager" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pb-3 pl-2 cursor-pointer">
+      <div class="flex" style="gap: 5px;align-items: flex-start;">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+          styleClass="mr-1"
+          shape="circle"
+        />
+        <div class="flex" style="justify-content: space-between;
+        width: 100%;
+        align-items: center;">
+          <p class="m-0 text-600 mr-2">Alex</p>
+          <div style="scale: 0.8">
+            <p-tag severity="info" value="Manager" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pb-3 pl-2 cursor-pointer">
+      <div class="flex" style="gap: 5px;align-items: flex-start;">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+          styleClass="mr-1"
+          shape="circle"
+        />
+        <div class="flex" style="justify-content: space-between;
+        width: 100%;
+        align-items: center;">
+          <p class="m-0 text-600 mr-2">Alex</p>
+          <div style="scale: 0.8">
+            <p-tag severity="info" value="Manager" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-12 md:col-4">
     <div class="card relative h-6rem border-round-xl p-3">
       <span class="text-sm font-medium line-height-1">Weekly Earnings</span>
       <div class="flex justify-content-between">
@@ -79,4 +158,3 @@
       />
     </div>
   </div> -->
-</div>

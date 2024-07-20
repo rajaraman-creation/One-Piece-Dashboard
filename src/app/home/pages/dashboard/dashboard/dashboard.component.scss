@@ -1,9 +1,43 @@
 .side_menu_op {
-  width: 230px;
+  width: 240px;
   height: 100vh;
   position: fixed;
   left: 4.5rem;
-  top: 4rem;
+  top: 3.7rem;
+}
+
+.p-button.p-button-icon-only {
+  width: 2.357rem;
+  padding: 0.4rem 0 !important;
 }
 
 
+.service-confirm{
+  position: absolute;
+    top: 6px;
+    right: -6px;
+    scale: .8;
+    align-items: center;
+    padding: .3rem;
+    border-radius: 5px;
+}
+
+.service-booking{
+  position: absolute;
+  top: 9px;
+  right: -6px;
+  scale: .8;
+  align-items: center;
+  padding: .3rem;
+  border-radius: 5px;
+}
+
+.service-option{
+  position: absolute;
+  bottom: 9px;
+  right: 2px;
+  scale: .8;
+  align-items: center;
+  padding: .3rem;
+  border-radius: 5px;
+}

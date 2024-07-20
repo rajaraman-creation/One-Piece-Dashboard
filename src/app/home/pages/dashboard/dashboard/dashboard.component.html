@@ -1,5 +1,17 @@
 <div class="side_menu_op">
-  <div class="card" style="padding: 1px">
+  <div class="w-full mb-2 mt-1" style="width: 100%">
+    <div style="display: flex; justify-content: start;">
+      <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="values.value">
+        <mat-button-toggle value="left" aria-label="Text align center" style="padding: .2rem;width: 120px;">
+          <mat-icon>view_kanban</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="right" aria-label="Text align left" style="padding: .2rem; width: 120px;">
+          <mat-icon>event_available</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <div class="card" style="padding: 1px;margin: 0px 0px 10px 0px;">
     <mat-calendar
       [(selected)]="selected"
       style="
@@ -8,92 +20,812 @@
       "
     ></mat-calendar>
   </div>
-</div>
-
-<div style="margin-left: calc(4.4rem + 10rem)">
   <div class="pb-2">
     <app-dashboard-meter [dataSource]="meter"></app-dashboard-meter>
   </div>
+</div>
 
-  <div class="grid">
-    <div class="col-12 md:col-4">
+<div style="margin-left: calc(5.5rem + 10rem)">
+  
+  <!-- <i class="pi pi-bolt" style="color: yellow"></i>
+  <i class="pi pi-stopwatch" style="color: rgb(218, 37, 82)"></i>
+  <i class="pi pi-flag-fill" style="color: greenyellow"></i>
+  <i class="pi pi-bullseye" style="color: violet"></i> -->
+
+  <div
+    style="
+      display: flex;
+      margin-right: -0.5rem;
+      margin-left: -0.5rem;
+      margin-top: -0.5rem;
+      overflow-x: scroll;
+      min-height: 90vh;
+    "
+  >
+    <!-- Need Approval -->
+    <div class="col-12 md:col-3" style="min-width: 420px">
       <div class="card p-0">
+        <div class="timeline-header pl-3 pt-2 flex justify-content-between align-items-center">
+          <p class="m-0 font-semibold">Needs Approval</p>
+        </div>
+        <!-- Filter Header -->
         <div
-          class="timeline-header p-3 flex justify-content-between align-items-center"
+          class="timeline-header p-3 pt-1 flex justify-content-between align-items-center"
         >
-          <p class="m-0">Income history</p>
+          <div class="flex" style="flex-direction: column">
+            <input type="text" pInputText placeholder="Search" style="width: 150%;"/>
+          </div>
           <div class="header-icons">
-            <i class="pi pi-refresh ml-2"></i><i class="pi pi-filter ml-2"></i>
+            <i class="pi pi-refresh ml-2"></i>
+            <i class="pi pi-filter ml-2"></i>
           </div>
         </div>
 
-        <div class="pb-3">
-          <p>10.00 Am</p>
-          <p-avatar
-            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-            styleClass="mr-2"
-            shape="circle"
-          />
-          <div class="mx-3">
-            <p class="m-0 text-600">Nike Air X12</p>
-            <span class="block text-sm font-normal text-color-secondary"
-              >Sold <span class="font-semibold">250</span> times</span
-            >
+        <p-menu #menu [model]="items" [popup]="true" />
+        <div class="pb-3 p-3 cursor-pointer" style="position: relative; border-bottom:1px solid rgba(128, 128, 128, 0.185);">
+          <div class="flex" style="justify-content: space-between; align-items:last baseline;">
+            <div class="flex" style="gap: 3px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0" style="font-size: 1rem; font-weight: 500">
+                  Pluto 
+                  <span class="font-normal">(Husky)</span>
+                </p>
+                <p class="m-0 mb-1" style="font-size: .9rem; font-weight: 500">
+                  Rajaraman Sekar
+                </p>
+
+                <div>
+                  <span
+                    class="block text-sm font-normal text-color-secondary"
+                    style="font-size: 10px"
+                  >
+                    <i class="pi pi-calendar mr-1"></i>
+                    <span class="font-light"
+                      >July 17 10.00 AM - July 17 10.00 AM
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-2 service-booking">
+              <p-tag severity="success" value="Full Grooming "/>
+              <p-tag severity="success" value="Full Wash "/>
+              <i class="pi pi-exclamation-circle" style="color: rgb(10, 10, 1); scale: 1.2;" (click)="menu.toggle($event)"></i>
+            </div>
+            <div style="scale: .8;" class="service-option gap-2 flex">
+              <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+              <p-button icon="pi pi-times" [rounded]="true" severity="danger" [outlined]="true" />
+            </div>
           </div>
-          <p>taka</p>
-          <p-menu #menu [model]="items" [popup]="true" />
-          <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
-          <p-progressBar [value]="value" [style]="{ height: '6px' }" />
+         
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" style="position: relative; border-bottom:1px solid rgba(128, 128, 128, 0.185);">
+          <div class="flex" style="justify-content: space-between; align-items:last baseline;">
+            <div class="flex" style="gap: 3px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0" style="font-size: 1rem; font-weight: 500">
+                  Pluto 
+                  <span class="font-normal">(Husky)</span>
+                </p>
+                <p class="m-0 mb-1" style="font-size: .9rem; font-weight: 500">
+                  Rajaraman Sekar
+                </p>
+
+                <div>
+                  <span
+                    class="block text-sm font-normal text-color-secondary"
+                    style="font-size: 10px"
+                  >
+                    <i class="pi pi-calendar mr-1"></i>
+                    <span class="font-light"
+                      >July 17 10.00 AM - July 17 10.00 AM
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-2 service-booking">
+              <p-tag severity="success" value="Full Grooming "/>
+              <p-tag severity="success" value="Full Wash "/>
+            </div>
+            <div style="scale: .8;" class="service-option gap-2 flex">
+              <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+              <p-button icon="pi pi-times" [rounded]="true" severity="danger" [outlined]="true" />
+            </div>
+          </div>
+         
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" style="position: relative; border-bottom:1px solid rgba(128, 128, 128, 0.185);">
+          <div
+            class="flex"
+            style="justify-content: space-between; align-items:last baseline;"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0" style="font-size: 1rem; font-weight: 500">
+                  Pluto 
+                  <span class="font-normal">(Husky)</span>
+                </p>
+                <p class="m-0 mb-1" style="font-size: .9rem; font-weight: 500">
+                  Rajaraman Sekar
+                </p>
+
+                <div>
+                  <span
+                    class="block text-sm font-normal text-color-secondary"
+                    style="font-size: 10px"
+                  >
+                    <i class="pi pi-calendar mr-1"></i>
+                    <span class="font-light"
+                      >July 17 10.00 AM - July 17 10.00 AM
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <i
+              class="pi pi-exclamation-circle"
+              style="color: rgb(10, 10, 1)"
+              (click)="menu.toggle($event)"
+            ></i>
+            </div>
+            <div class="flex gap-2 service-confirm">
+              <p-tag severity="success" value="Full Grooming "/>
+              <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+              <p-button icon="pi pi-times" [rounded]="true" severity="danger" [outlined]="true" />
+            </div>
+          </div>
+         
+        </div>
+
+      </div>
+    </div>
+    <!-- Booking -->
+    <div class="col-12 md:col-3" style="min-width: 420px">
+      <div class="card p-0">
+        <div
+          class="timeline-header pl-3 pt-2 flex justify-content-between align-items-center"
+        >
+          <p class="m-0 font-semibold">Booking</p>
+        </div>
+        <!-- Filter Header -->
+        <div
+          class="timeline-header p-3 pt-1 flex justify-content-between align-items-center"
+        >
+          <div class="flex" style="flex-direction: column">
+            <input type="text" pInputText placeholder="Search" style="width: 150%;" />
+          </div>
+          <div class="header-icons">
+            <i class="pi pi-refresh ml-2"></i>
+            <i class="pi pi-filter ml-2"></i>
+          </div>
+        </div>
+
+        <p-menu #menu [model]="items" [popup]="true" />
+        <div class="pb-3 p-3 cursor-pointer" style="position: relative; border-bottom:1px solid rgba(128, 128, 128, 0.185);">
+          <div
+            class="flex"
+            style="justify-content: space-between; align-items:last baseline;"
+          >
+            <div class="flex" style="gap: 3px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0" style="font-size: 1rem; font-weight: 500">
+                  Pluto 
+                  <span class="font-normal">(Husky)</span>
+                </p>
+                <p class="m-0 mb-1" style="font-size: .9rem; font-weight: 500">
+                  Rajaraman Sekar
+                </p>
+
+                <div>
+                  <span
+                    class="block text-sm font-normal text-color-secondary"
+                    style="font-size: 10px"
+                  >
+                    <i class="pi pi-calendar mr-1"></i>
+                    <span class="font-light"
+                      >July 17 10.00 AM - July 17 10.00 AM
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-2 service-booking">
+              <p-tag severity="success" value="Full Grooming "/>
+              <!-- <i class="pi pi-ellipsis-v" style="font-size: 1.5rem"></i> -->
+              <p-tag severity="info" value="Tiffany"/>
+            </div>
+            <div style="scale: .8;" class="service-option gap-2 flex">
+              <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+              <p-button icon="pi pi-bell" [rounded]="true" severity="secondary" [outlined]="true" />
+
+            </div>
+          </div>
+         
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" style="position: relative; border-bottom:1px solid rgba(128, 128, 128, 0.185);">
+          <div
+            class="flex"
+            style="justify-content: space-between; align-items:last baseline;"
+          >
+            <div class="flex" style="gap: 3px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0" style="font-size: 1rem; font-weight: 500">
+                  Pluto 
+                  <span class="font-normal">(Husky)</span>
+                </p>
+                <p class="m-0 mb-1" style="font-size: .9rem; font-weight: 500">
+                  Rajaraman Sekar
+                </p>
+
+                <div>
+                  <span
+                    class="block text-sm font-normal text-color-secondary"
+                    style="font-size: 10px"
+                  >
+                    <i class="pi pi-calendar mr-1"></i>
+                    <span class="font-light"
+                      >July 17 10.00 AM - July 17 10.00 AM
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div style="scale: .8;" class="service-option gap-1 flex">
+              <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+              <p-button icon="pi pi-bell" [rounded]="true" severity="secondary" [outlined]="true" />
+            </div>
+            <div class="flex gap-2 service-booking">
+              <p-tag severity="success" value="Full Grooming "/>
+              <p-tag severity="info" value="Tiffany"/>
+            </div>
+          </div>
+         
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" style="position: relative; border-bottom:1px solid rgba(128, 128, 128, 0.185);">
+          <div
+            class="flex"
+            style="justify-content: space-between; align-items:last baseline;"
+          >
+            <div class="flex" style="gap: 3px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0" style="font-size: 1rem; font-weight: 500">
+                  Pluto 
+                  <span class="font-normal">(Husky)</span>
+                </p>
+                <p class="m-0 mb-1" style="font-size: .9rem; font-weight: 500">
+                  Rajaraman Sekar
+                </p>
+
+                <div>
+                  <span
+                    class="block text-sm font-normal text-color-secondary"
+                    style="font-size: 10px"
+                  >
+                    <i class="pi pi-calendar mr-1"></i>
+                    <span class="font-light"
+                      >July 17 10.00 AM - July 17 10.00 AM
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div style="scale: .8;" class="service-option gap-1 flex">
+              <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+              <p-button icon="pi pi-bell" [rounded]="true" severity="secondary" [outlined]="true" />
+            </div>
+            <div class="flex gap-2 service-booking">
+              <p-tag severity="success" value="Full Grooming "/>
+              <p-tag severity="info" value="Tiffany"/>
+            </div>
+          </div>
+         
         </div>
       </div>
     </div>
-
-    <div class="col-12 md:col-4">
+    <!-- Serving Queue-->
+    <div class="col-12 md:col-3" style="min-width: 420px">
       <div class="card p-0">
         <div
-          class="timeline-header p-3 flex justify-content-between align-items-center"
+          class="timeline-header pl-3 pt-2 flex justify-content-between align-items-center"
         >
-          <p class="m-0">Withdrawal history</p>
+          <p class="m-0 font-semibold">Queue</p>
+        </div>
+        <!-- Filter Header -->
+        <div
+          class="timeline-header p-3 pt-1 flex justify-content-between align-items-center"
+        >
+          <div class="flex" style="flex-direction: column">
+            <input type="text" pInputText placeholder="Search" style="width: 150%;" />
+          </div>
           <div class="header-icons">
-            <i class="pi pi-refresh ml-2"></i><i class="pi pi-filter ml-2"></i>
+            <i class="pi pi-refresh ml-2"></i>
+            <i class="pi pi-filter ml-2"></i>
           </div>
         </div>
 
-        <div class="pb-3">
-          <p-timeline
-            [value]="events"
-            styleclass="custom-timeline py-0 px-3"
-            class="p-element"
+        <p-menu #menu [model]="items" [popup]="true" />
+        <div class="pb-3 p-3 cursor-pointer">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
           >
-            <ng-template pTemplate="marker" let-event>
-              <span
-                class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1"
-                [style]="{ 'background-color': event.color }"
-              >
-                <i [class]="event.icon"></i>
-              </span>
-            </ng-template>
-
-            <ng-template pTemplate="content" let-event>
-              <div
-                class="flex p-1"
-                style="align-items: center; justify-content: space-between"
-              >
-                <div>
-                  <p class="m-0">Payment from #28492</p>
-                  <span class="text-sm text-color-secondary ng-star-inserted"
-                    >June 13, 2020 11:09 AM</span
-                  >
-                </div>
-                <!-- <div>+$250.00</div> -->
-                <h6 class="m-0" style="color: rgb(4, 196, 61)">+$250.00</h6>
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">
+                  Pluto (Husky) <i class="pi pi-bolt" style="color: yellow"></i>
+                </p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
               </div>
-            </ng-template>
-            <ng-template pTemplate="opposite" class=".custom-timeline">
-            </ng-template>
-          </p-timeline>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+
+              <i
+                class="pi pi-exclamation-circle"
+                style="color: yellow"
+                (click)="menu.toggle($event)"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" (click)="menu.toggle($event)">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">Pluto (Husky)</p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+              <i
+                class="pi pi-angle-right"
+                style="color: 'var(--primary-color)'"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" (click)="menu.toggle($event)">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">Pluto (Husky)</p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+              <i
+                class="pi pi-angle-right"
+                style="color: 'var(--primary-color)'"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+      </div>
+    </div>
+    <!-- Check-In -->
+    <div class="col-12 md:col-3" style="min-width: 420px">
+      <div class="card p-0">
+        <div
+          class="timeline-header pl-3 pt-2 flex justify-content-between align-items-center"
+        >
+          <p class="m-0 font-semibold">Serving</p>
+        </div>
+        <!-- Filter Header -->
+        <div
+          class="timeline-header p-3 pt-1 flex justify-content-between align-items-center"
+        >
+          <div class="flex" style="flex-direction: column">
+            <input type="text" pInputText placeholder="Search" style="width: 150%;" />
+          </div>
+          <div class="header-icons">
+            <i class="pi pi-refresh ml-2"></i>
+            <i class="pi pi-filter ml-2"></i>
+          </div>
+        </div>
+
+        <p-menu #menu [model]="items" [popup]="true" />
+        <div class="pb-3 p-3 cursor-pointer">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">
+                  Pluto (Husky) <i class="pi pi-bolt" style="color: yellow"></i>
+                </p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+
+              <i
+                class="pi pi-exclamation-circle"
+                style="color: yellow"
+                (click)="menu.toggle($event)"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" (click)="menu.toggle($event)">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">Pluto (Husky)</p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+              <i
+                class="pi pi-angle-right"
+                style="color: 'var(--primary-color)'"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" (click)="menu.toggle($event)">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">Pluto (Husky)</p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+              <i
+                class="pi pi-angle-right"
+                style="color: 'var(--primary-color)'"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+      </div>
+    </div>
+    <!-- Check-Out -->
+    <div class="col-12 md:col-3" style="min-width: 420px">
+      <div class="card p-0">
+        <div
+          class="timeline-header pl-3 pt-2 flex justify-content-between align-items-center"
+        >
+          <p class="m-0 font-semibold">Completed</p>
+        </div>
+        <!-- Filter Header -->
+        <div
+          class="timeline-header p-3 pt-1 flex justify-content-between align-items-center"
+        >
+          <div class="flex" style="flex-direction: column">
+            <input type="text" pInputText placeholder="Search" style="width: 150%;" />
+          </div>
+          <div class="header-icons">
+            <i class="pi pi-refresh ml-2"></i>
+            <i class="pi pi-filter ml-2"></i>
+          </div>
+        </div>
+
+        <p-menu #menu [model]="items" [popup]="true" />
+        <div class="pb-3 p-3 cursor-pointer">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">
+                  Pluto (Husky) <i class="pi pi-bolt" style="color: yellow"></i>
+                </p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+
+              <i
+                class="pi pi-exclamation-circle"
+                style="color: yellow"
+                (click)="menu.toggle($event)"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" (click)="menu.toggle($event)">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">Pluto (Husky)</p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+              <i
+                class="pi pi-angle-right"
+                style="color: 'var(--primary-color)'"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
+        </div>
+        <div class="pb-3 p-3 cursor-pointer" (click)="menu.toggle($event)">
+          <div
+            class="flex pb-2"
+            style="justify-content: space-between; align-items: center"
+          >
+            <div class="flex" style="gap: 10px">
+              <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                styleClass="mr-1"
+                shape="circle"
+              />
+              <div>
+                <p class="m-0 font-medium">Pluto (Husky)</p>
+                <span class="block text-sm font-normal text-color-secondary">
+                  Rajaraman
+                  <span class="font-light">8531837909</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-3" style="align-items: center">
+              <div>
+                <p class="m-0 font-medium text-right">June 13 11:00 AM</p>
+                <span class="text-sm text-color-secondary ng-star-inserted">
+                  June 13 11:30 AM
+                </span>
+              </div>
+              <i
+                class="pi pi-angle-right"
+                style="color: 'var(--primary-color)'"
+              ></i>
+            </div>
+          </div>
+          <!-- <p-progressBar
+            [value]="value"
+            [style]="{ height: '6px', width: '96%', margin: 'auto' }"
+          /> -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- <div class="col-12 md:col-4">
+  <div class="card p-0">
+    <div
+      class="timeline-header p-3 flex justify-content-between align-items-center"
+    >
+      <p class="m-0">Withdrawal history</p>
+      <div class="header-icons">
+        <i class="pi pi-refresh ml-2"></i><i class="pi pi-filter ml-2"></i>
+      </div>
+    </div>
+
+    <div class="pb-3">
+      <p-timeline
+        [value]="events"
+        styleclass="custom-timeline py-0 px-3"
+        class="p-element"
+      >
+        <ng-template pTemplate="marker" let-event>
+          <span
+            class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1"
+            [style]="{ 'background-color': event.color }"
+          >
+            <i [class]="event.icon"></i>
+          </span> </ng-template
+        >a
+
+        <ng-template pTemplate="content" let-event>
+          <div
+            class="flex p-1"
+            style="align-items: center; justify-content: space-between"
+          >
+            <div>
+              <p class="m-0">Payment from #28492</p>
+              <span class="text-sm text-color-secondary ng-star-inserted"
+                >June 13, 2020 11:09 AM</span
+              >
+            </div>
+            <h6 class="m-0" style="color: rgb(4, 196, 61)">+$250.00</h6>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="opposite" class=".custom-timeline">
+        </ng-template>
+      </p-timeline>
+    </div>
+  </div>
+</div> -->

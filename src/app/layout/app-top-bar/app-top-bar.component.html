@@ -11,6 +11,24 @@
     <span class="layout-topbar-brand">One Piece</span>
   </a>
 
+  <div class="flex mt-2 " style="margin: auto;gap: 2rem; transform: translateX(4rem);">
+    <div (click)="open('CLIENT')">
+      <img src="../../../assets/images/img/user.png" alt="" style="width: 35px; height: 35px;">
+    </div>
+    <div (click)="open('BOOK')">
+      <img src="../../../assets/images/img/book_active.png" alt="" style="width: 35px; height: 35px;">
+    </div>
+    <div (click)="open('INVOICE')">
+      <img src="../../../assets/images/img/quickInvoice.png" alt="" style="width: 35px; height: 35px;">
+    </div>
+    <div (click)="open('MSG')">
+      <img src="../../../assets/images/img/message.png" alt="" style="width: 35px; height: 35px;">
+    </div>
+    <div (click)="open('MSG')">
+      <img src="../../../assets/images/img/notification.png" alt="" style="width: 35px; height: 35px;">
+    </div>
+  </div>
+
   <div #topbarmenu class="layout-topbar-menu">
     <div class="flex justify-content-center">
       <p-menu #menu [model]="items" [popup]="true" />
@@ -23,5 +41,23 @@
     </div>
   </div>
 </div>
+
+  <p-sidebar [(visible)]="sidebarVisible"  [style]="{ width: '40%', margin: 'auto' }" position="right" >
+    <ng-template pTemplate="header">
+        <span class="font-semibold text-xl">Sidebar</span>
+    </ng-template>
+    <ng-container *ngIf="view=='CLIENT' && sidebarVisible">
+      <app-client></app-client>
+    </ng-container>
+    <ng-container *ngIf="view=='BOOK' && sidebarVisible">
+      <app-book-appointment></app-book-appointment>
+    </ng-container>
+    <ng-container *ngIf="view=='INVOICE' && sidebarVisible">
+      <app-quick-check-out></app-quick-check-out>
+    </ng-container>
+    <ng-container *ngIf="view=='MSG' && sidebarVisible">
+      <app-message-hub></app-message-hub>
+    </ng-container>
+  </p-sidebar>
 
 

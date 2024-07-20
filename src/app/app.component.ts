@@ -7,9 +7,11 @@ import { ThemeService } from './theme.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  value=""
+  // value=""
   constructor(private themeService: ThemeService) {}
-
+  value = [
+    { label: 'Space used', value: 15, color: '#34d399' }
+];
     selectedState: any = null;
 
     states: any[] = [

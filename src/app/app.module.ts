@@ -13,6 +13,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MeterGroupModule } from 'primeng/metergroup';
 @NgModule({
   declarations: [
     AppComponent
@@ -29,6 +30,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 		InputTextareaModule,
 		DropdownModule,
     FormsModule,
+    MeterGroupModule,
   ],
   providers: [
     provideAnimationsAsync()

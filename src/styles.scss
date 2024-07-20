@@ -1,6 +1,5 @@
 @import "assets/layout/styles/layout/layout.scss";
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 @import "primeng/resources/primeng.min.css";
 @import "primeflex/primeflex.css";
@@ -32,12 +31,12 @@ body {
   background-color: var(--surface-ground);
   color: var(--text-color);
   overflow-x: hidden;
-//   padding: 0;
-//   margin: 0;
-//   min-height: 100%;
-//   // overflow-y: hidden;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
+  //   padding: 0;
+  //   margin: 0;
+  //   min-height: 100%;
+  //   // overflow-y: hidden;
+  //   -webkit-font-smoothing: antialiased;
+  //   -moz-osx-font-smoothing: grayscale;
 }
 
 .p-timeline-event-opposite {
@@ -46,17 +45,17 @@ body {
 }
 
 .p-speeddial-action {
-    width: 2rem;
-    height: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 .p-speeddial-button.p-button.p-button-icon-only {
-    width: 2rem;
-    height: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .p-inputotp-input {
-    text-align: center;
-    width: 2.5rem;
+  text-align: center;
+  width: 2.5rem;
 }
 
 html::-webkit-scrollbar {
@@ -69,7 +68,6 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
 
 .star {
   position: absolute;
@@ -91,17 +89,20 @@ body {
 
 @keyframes fall-1 {
   0% {
-    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg)
+      scale(0.25);
     opacity: 0;
   }
-  
+
   5% {
-    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg)
+      rotateZ(0deg) scale(1);
     opacity: 1;
   }
-  
+
   100% {
-    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg)
+      rotateZ(90deg) scale(1);
     opacity: 0;
   }
 }
@@ -111,14 +112,15 @@ body {
     transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
     opacity: 0;
   }
-  
+
   10% {
     transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
     opacity: 1;
   }
-  
+
   100% {
-    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg)
+      scale(0.25);
     opacity: 0;
   }
 }
@@ -128,25 +130,127 @@ body {
     transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
     opacity: 0;
   }
-  
+
   15% {
     transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
     opacity: 1;
   }
-  
+
   100% {
-    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg)
+      scale(0.5);
     opacity: 0;
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
 
-:root{
-  --mdc-text-button-label-text-color:red!important;
-  --mdc-text-button-label-text-color:var(--blue-300);
-  --mat-datepicker-calendar-date-text-color:var(--blue-300);
-  --mat-datepicker-calendar-body-label-text-color:var(--blue-300);
-  --mat-datepicker-calendar-header-text-color:var(--blue-300);
+:root {
+  --mat-standard-button-toggle-background-color:var(--text-color);
+  --mat-icon-color: var(--primary-color-text);
+  --mdc-text-button-label-text-color: red !important;
+  --mdc-text-button-label-text-color: var(--blue-300);
+  --mat-datepicker-calendar-date-text-color: var(--blue-300);
+  --mat-datepicker-calendar-body-label-text-color: var(--blue-300);
+  --mat-datepicker-calendar-header-text-color: var(--blue-300);
+
+  --mat-sidenav-content-background-color: var(--surface-overlay);
+  --mat-sidenav-container-divider-color: var(--surface-overlay);
+  --mat-sidenav-container-background-color: var(--surface-overlay);
+  --mat-table-background-color: var(--surface-overlay);
+
+  --mat-table-header-headline-color: var(--primary-color);
+  --mat-table-row-item-label-text-color: var(--primary-color);
+}
+
+
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  padding: 0 12px;
+  line-height: 0px !important;
+}
+.mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+  color: var(--secondary);
+  background-color: var(--primary-color) !important;
+}
+
+.jsac {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-timeline-event {
+  display: flex;
+  position: relative;
+  min-height: 50px !important;
+}
+
+:host ::ng-deep {
+  .drop-column {
+    border: 1px solid gray;
+    transition: border-color 0.2s;
+
+    &.p-draggable-enter {
+      border-color: var(--primary-color);
+    }
+  }
+
+  [pDraggable] {
+    cursor: move;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 5px; /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f100; /* Background of the scrollbar track */
+  border-radius: 10px; /* Optional: round the corners of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Optional: round the corners of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #55555500; /* Color of the scrollbar thumb when hovered */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: var(--primary-color) #f1f1f100; /* Color of the thumb and track */
+}
+
+/* For Internet Explorer and Edge Legacy */
+body {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+::-ms-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-ms-scrollbar-track {
+  background: #e7030300;
+  border-radius: 10px;
+}
+
+::-ms-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-ms-scrollbar-thumb:hover {
+  background: #55555500;
 }

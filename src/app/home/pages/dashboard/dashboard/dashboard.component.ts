@@ -19,30 +19,47 @@ interface EventItem {
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  values: any = { icon: 'pi pi-align-left', value: 'left' };
+
   selected = model<Date | null>(null);
+  stateOptions: any[] = [
+    { label: 'Off', value: 'off' },
+    { label: 'On', value: 'on' },
+  ];
 
   meter: DashboardMeter[] = [
     {
-      name: 'Incoming',
-      status: '+1%',
-      currentValue: '50',
+      name: 'Today Bookings',
+      // status: '+5%',
+      currentValue: 20,
       progressLink: 'assets/rate.svg',
     },
+    // {
+    //   name: 'Weekly Bookings',
+    //   // status: '+0%',
+    //   currentValue: 60,
+    //   progressLink: 'assets/quantity.svg',
+    // },
+    // {
+    //   name: 'Weekly Goal',
+    //   // status: '10%',
+    //   currentValue: 120,
+    //   progressLink: 'assets/value.svg',
+    // },
     {
-      name: 'Inprogress',
-      status: '+1%',
-      currentValue: '50',
-      progressLink: 'assets/quantity.svg',
+      name: 'Leaving Today',
+      currentValue: 30,
+      // progressLink: 'assets/rate.svg',
     },
     {
-      name: 'Outgoing',
-      status: '+1%',
-      currentValue: '50',
-      progressLink: 'assets/value.svg',
+      name: 'Check Out',
+      currentValue: 30,
+      // progressLink: 'assets/value.svg',
     },
   ];
 
-  value: number = 20;
+  value: number = 80;
+
   items: MenuItem[] | undefined;
 
   date: Date[] | undefined;
@@ -121,7 +138,6 @@ export class DashboardComponent {
         ],
       },
     ];
-  
 
     this.barData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

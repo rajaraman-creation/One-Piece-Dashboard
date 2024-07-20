@@ -8,7 +8,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { LayoutModule } from 'src/app/layout/layout.module';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { ButtonModule } from 'primeng/button';
+import { TabViewModule } from 'primeng/tabview';
 
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [SettingComponent],
   imports: [
@@ -18,7 +22,7 @@ import { LayoutModule } from 'src/app/layout/layout.module';
     FormsModule,
     InputIconModule,
     IconFieldModule,
-    LayoutModule
+    LayoutModule,PanelMenuModule,ButtonModule,TabViewModule,CardModule
   ]
 })
 export class SettingsModule { }

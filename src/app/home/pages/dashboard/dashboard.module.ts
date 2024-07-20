@@ -15,11 +15,20 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MeterGroupModule } from 'primeng/metergroup';
 import { MenuModule } from 'primeng/menu';
 import {MatNativeDateModule} from '@angular/material/core';
 import { InterfaceService } from '../../service/interface.service';
 import { ProgressBarModule } from 'primeng/progressbar';
+
+import { InputIconModule } from 'primeng/inputicon';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputTextModule } from 'primeng/inputtext';
+import { TagModule } from 'primeng/tag';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
@@ -36,7 +45,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
     LayoutModule,
     FormsModule,MatCardModule,MatDatepickerModule,MatNativeDateModule,
     ProgressBarModule,
-    MenuModule
+    MenuModule,
+    InputIconModule,IconFieldModule,InputTextModule,TagModule,
+    SelectButtonModule,MatIconModule,MatButtonToggleModule
   ],
   providers:[InterfaceService]
 })

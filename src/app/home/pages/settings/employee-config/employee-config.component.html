@@ -1,0 +1,283 @@
+<div class="posc mb-4">
+    <input
+      type="text"
+      style="width: 35%; padding-left: 1rem; border-radius: 5px"
+      pInputText
+      placeholder="Search"
+    />
+  </div>
+<div class="flex gap-3 flex-wrap">
+  
+  <div class="card p-2 m-0" style="width: 300px">
+    <div class="flex jsac mb-3">
+      <!-- Check box -->
+      <p-checkbox [binary]="true" inputId="binary" />
+      <div class="flex gap-1 jsac">
+        <!-- Status -->
+        <mat-button-toggle value="bold">Active</mat-button-toggle>
+        <!-- More options -->
+        <p-menu #menu [model]="items" [popup]="true" />
+        <i class="pi pi-ellipsis-v" style="color: black" (click)="menu.toggle($event)"></i>
+      </div>
+    </div>
+
+    <div
+      class="flex mb-3"
+      style="
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <!-- image -->
+      <p-avatar
+        image="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941"
+        styleClass="mr-2"
+        shape="circle"
+        size="xlarge"
+      />
+      <div class="text-center">
+        <!-- Name -->
+        <p class="font-medium m-0" style="font-size: large">Rajaraman</p>
+        <!-- Role -->
+        <span class="text-color-secondary"> Chief Engineer </span>
+      </div>
+    </div>
+
+    <div class="card p-2">
+      <div class="flex jsac mb-3">
+        <!-- Department -->
+        <div class="text-left">
+          <span class="text-color-secondary" style="font-size: small">
+            Department
+          </span>
+          <p class="font-medium m-0" style="font-size: small">Development</p>
+        </div>
+        <!-- Date Joined -->
+        <div class="text-right">
+          <span class="text-color-secondary" style="font-size: small">
+            Date Hired
+          </span>
+          <p class="font-medium m-0" style="font-size: small">July 15 2024</p>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div>
+        <!-- phone -->
+        <p class="mb-2">
+          <i class="pi pi-mobile" style="color: black"></i>
+          8531837909
+        </p>
+        <!-- email pi-at-->
+        <p class="mb-1">
+          <i class="pi pi-envelope" style="color: black"></i>
+          RajaramanOnePiece.com
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card p-2 m-0" style="width: 300px">
+    <div class="flex jsac mb-3">
+      <!-- Check box -->
+      <p-checkbox [binary]="true" inputId="binary" />
+      <div class="flex gap-1 jsac">
+        <!-- Status -->
+        <mat-button-toggle value="bold">Active</mat-button-toggle>
+        <!-- More options -->
+        <p-menu #menu [model]="items" [popup]="true" />
+        <i class="pi pi-ellipsis-v" style="color: black" (click)="menu.toggle($event)"></i>
+      </div>
+    </div>
+
+    <div
+      class="flex mb-3"
+      style="
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <!-- image -->
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+        styleClass="mr-2"
+        shape="circle"
+        size="xlarge"
+      />
+      <div class="text-center">
+        <!-- Name -->
+        <p class="font-medium m-0" style="font-size: large">Rajaraman</p>
+        <!-- Role -->
+        <span class="text-color-secondary"> Chief Engineer </span>
+      </div>
+    </div>
+
+    <div class="card p-2">
+      <div class="flex jsac mb-3">
+        <!-- Department -->
+        <div class="text-left">
+          <span class="text-color-secondary" style="font-size: small">
+            Department
+          </span>
+          <p class="font-medium m-0" style="font-size: small">Development</p>
+        </div>
+        <!-- Date Joined -->
+        <div class="text-right">
+          <span class="text-color-secondary" style="font-size: small">
+            Date Hired
+          </span>
+          <p class="font-medium m-0" style="font-size: small">July 15 2024</p>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div>
+        <!-- phone -->
+        <p class="mb-2">
+          <i class="pi pi-mobile" style="color: black"></i>
+          8531837909
+        </p>
+        <!-- email pi-at-->
+        <p class="mb-1">
+          <i class="pi pi-envelope" style="color: black"></i>
+          RajaramanOnePiece.com
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card p-2 m-0" style="width: 300px">
+    <div class="flex jsac mb-3">
+      <!-- Check box -->
+      <p-checkbox [binary]="true" inputId="binary" />
+      <div class="flex gap-1 jsac">
+        <!-- Status -->
+        <mat-button-toggle value="bold">Active</mat-button-toggle>
+        <!-- More options -->
+        <p-menu #menu [model]="items" [popup]="true" />
+        <i class="pi pi-ellipsis-v" style="color: black" (click)="menu.toggle($event)"></i>
+      </div>
+    </div>
+
+    <div
+      class="flex mb-3"
+      style="
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <!-- image -->
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+        styleClass="mr-2"
+        shape="circle"
+        size="xlarge"
+      />
+      <div class="text-center">
+        <!-- Name -->
+        <p class="font-medium m-0" style="font-size: large">Rajaraman</p>
+        <!-- Role -->
+        <span class="text-color-secondary"> Chief Engineer </span>
+      </div>
+    </div>
+
+    <div class="card p-2">
+      <div class="flex jsac mb-3">
+        <!-- Department -->
+        <div class="text-left">
+          <span class="text-color-secondary" style="font-size: small">
+            Department
+          </span>
+          <p class="font-medium m-0" style="font-size: small">Development</p>
+        </div>
+        <!-- Date Joined -->
+        <div class="text-right">
+          <span class="text-color-secondary" style="font-size: small">
+            Date Hired
+          </span>
+          <p class="font-medium m-0" style="font-size: small">July 15 2024</p>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div>
+        <!-- phone -->
+        <p class="mb-2">
+          <i class="pi pi-mobile" style="color: black"></i>
+          8531837909
+        </p>
+        <!-- email pi-at-->
+        <p class="mb-1">
+          <i class="pi pi-envelope" style="color: black"></i>
+          RajaramanOnePiece.com
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card p-2 m-0" style="width: 300px">
+    <div class="flex jsac mb-3">
+      <!-- Check box -->
+      <p-checkbox [binary]="true" inputId="binary" />
+      <div class="flex gap-1 jsac">
+        <!-- Status -->
+        <mat-button-toggle value="bold">Active</mat-button-toggle>
+        <!-- More options -->
+        <p-menu #menu [model]="items" [popup]="true" />
+        <i class="pi pi-ellipsis-v" style="color: black" (click)="menu.toggle($event)"></i>
+      </div>
+    </div>
+
+    <div
+      class="flex mb-3"
+      style="
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <!-- image -->
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+        styleClass="mr-2"
+        shape="circle"
+        size="xlarge"
+      />
+      <div class="text-center">
+        <!-- Name -->
+        <p class="font-medium m-0" style="font-size: large">Rajaraman</p>
+        <!-- Role -->
+        <span class="text-color-secondary"> Chief Engineer </span>
+      </div>
+    </div>
+
+    <div class="card p-2">
+      <div class="flex jsac mb-3">
+        <!-- Department -->
+        <div class="text-left">
+          <span class="text-color-secondary" style="font-size: small">
+            Department
+          </span>
+          <p class="font-medium m-0" style="font-size: small">Development</p>
+        </div>
+        <!-- Date Joined -->
+        <div class="text-right">
+          <span class="text-color-secondary" style="font-size: small">
+            Date Hired
+          </span>
+          <p class="font-medium m-0" style="font-size: small">July 15 2024</p>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div>
+        <!-- phone -->
+        <p class="mb-2">
+          <i class="pi pi-mobile" style="color: black"></i>
+          8531837909
+        </p>
+        <!-- email pi-at-->
+        <p class="mb-1">
+          <i class="pi pi-envelope" style="color: black"></i>
+          RajaramanOnePiece.com
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

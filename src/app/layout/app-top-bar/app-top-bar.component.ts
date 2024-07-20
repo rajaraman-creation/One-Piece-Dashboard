@@ -8,12 +8,18 @@ import { MenuItem } from 'primeng/api';
   styleUrl: './app-top-bar.component.scss',
 })
 export class AppTopBarComponent {
-  items: MenuItem[] | undefined;
-  theme: MenuItem[] =[];
+  view ='';
+  
+  open(arg0: string) {
+    this.view = arg0;
+    this.sidebarVisible = !this.sidebarVisible;
+  }
 
+  items: MenuItem[] | undefined;
+  theme: MenuItem[] = [];
+  sidebarVisible: boolean = false;
 
   ngOnInit() {
- 
     this.items = [
       {
         label: 'Options',

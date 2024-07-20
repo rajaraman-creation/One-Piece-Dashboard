@@ -11,6 +11,11 @@ import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { AppSubmenuComponent } from './app-submenu/app-submenu.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ClientComponent } from "./overlay/client/client.component";
+import { BookAppointmentComponent } from "./overlay/book-appointment/book-appointment.component";
+import { QuickCheckOutComponent } from "./overlay/quick-check-out/quick-check-out.component";
+import { MessageHubComponent } from "./overlay/message-hub/message-hub.component";
 
 
 @NgModule({
@@ -28,8 +33,13 @@ import { AppSubmenuComponent } from './app-submenu/app-submenu.component';
     AvatarModule,
     MenuModule,
     ButtonModule,
-    SpeedDialModule
-  ],
+    SpeedDialModule,
+    SidebarModule,
+    ClientComponent,
+    BookAppointmentComponent,
+    QuickCheckOutComponent,
+    MessageHubComponent
+],
   exports:[AppLayoutComponent,AppSubmenuComponent]
 })
 export class LayoutModule { }

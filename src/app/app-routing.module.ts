@@ -34,6 +34,16 @@ const routes: Routes = [
       }
     ]
 
+  },
+  {
+    path:'booking',
+    component:AppLayoutComponent,
+    children:[
+      {
+        path:'',
+        loadChildren:() => import('./home/pages/bookings/bookings.module').then((m)=>m.BookingsModule)
+      }
+    ]
   }
 ];
 
