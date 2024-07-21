@@ -167,6 +167,16 @@ body {
 
   --mat-table-header-headline-color: var(--primary-color);
   --mat-table-row-item-label-text-color: var(--primary-color);
+
+  // size 
+  --mat-table-header-headline-size:1rem;
+
+  // Button
+  --mdc-outlined-button-outline-color: var(--primary-color);
+  --mdc-outlined-button-label-text-color: var(--primary-color);
+
+  // Icon
+  --mat-icon-color:var(--primary-color);
 }
 
 
@@ -219,6 +229,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #888; /* Color of the scrollbar thumb */
   border-radius: 10px; /* Optional: round the corners of the thumb */
+  z-index:0;
 }
 
 ::-webkit-scrollbar-thumb:hover {

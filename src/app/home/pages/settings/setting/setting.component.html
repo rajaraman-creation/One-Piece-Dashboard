@@ -1,6 +1,6 @@
 <!-- <p-button label="Open All" [text]="true" (onClick)="toggleAll()" /> -->
 <div class="card ml-4" style="min-height: 100vh">
-  <div class="posc">
+  <div class="posc mb-3">
     <input
       type="text"
       style="width: 35%; padding-left: 1rem; border-radius: 5px"
@@ -13,12 +13,12 @@
 
     <p-tabPanel header="Enterprise Management">
       <div class="flex gap-4">
-        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="service-configuration">
+        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="workspace-configuration">
           <h2>Sub Accounts</h2>
           <p class="m-0">Lorem ipsum dolor sit amet...</p>
         </div>
         <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="employee-configuration">
-          <h2>Employee Configuration</h2>
+          <h2>Advance Pricing</h2>
           <p class="m-0">Lorem ipsum dolor sit amet...</p>
         </div>
         <div class="card p-3" style="width: 280px; height: 180px;">
@@ -42,14 +42,33 @@
           <h2>Business Hours</h2>
           <p class="m-0">Lorem ipsum dolor sit amet...</p>
         </div>
+        <div class="card p-3" style="width: 280px; height: 180px;">
+          <h2>Staff Calendar</h2>
+          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        </div>
       </div>
       
     </p-tabPanel>
     
-    <p-tabPanel header="Header 3">
-      <ng-template pTemplate="content">
-        Complex Content to Lazy Load
-      </ng-template>
+    <p-tabPanel header="Entity Configuration">
+      <div class="flex gap-4">
+        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="entity-configuration">
+          <h2>Entity Configuration</h2>
+          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        </div>
+        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="immunization-configuration">
+          <h2>Immunization </h2>
+          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        </div>
+        <div class="card p-3" style="width: 280px; height: 180px;" routerLink="feeding-configuration">
+          <h2>Feeding </h2>
+          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        </div>
+        <div class="card p-3" style="width: 280px; height: 180px;" routerLink="medication-configuration">
+          <h2>Medication </h2>
+          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        </div>
+      </div>
     </p-tabPanel>
 
   </p-tabView>
