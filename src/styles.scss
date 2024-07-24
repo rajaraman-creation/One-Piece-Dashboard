@@ -164,6 +164,7 @@ body {
   --mat-sidenav-container-divider-color: var(--surface-overlay);
   --mat-sidenav-container-background-color: var(--surface-overlay);
   --mat-table-background-color: var(--surface-overlay);
+  --mat-standard-button-toggle-selected-state-background-color: green;
 
   --mat-table-header-headline-color: var(--primary-color);
   --mat-table-row-item-label-text-color: var(--primary-color);
@@ -181,6 +182,9 @@ body {
 
   // Icon
   --mat-icon-color:var(--primary-color);
+
+  // Calendar 
+  --fc-border-color: var(--primary-color);
 }
 
 .p-menu .p-submenu-header {
@@ -215,7 +219,7 @@ body {
 }
 .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
   color: var(--secondary);
-  background-color: var(--primary-color) !important;
+  background-color: lightgreen !important;
 }
 
 .jsac {

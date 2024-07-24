@@ -27,6 +27,7 @@ import { TagModule } from 'primeng/tag';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { CalendarComponent } from "../../components/calendar/calendar.component";
 
 
 @NgModule({
@@ -43,12 +44,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     AvatarModule,
     PanelModule,
     LayoutModule,
-    FormsModule,MatCardModule,MatDatepickerModule,MatNativeDateModule,
+    FormsModule, MatCardModule, MatDatepickerModule, MatNativeDateModule,
     ProgressBarModule,
     MenuModule,
-    InputIconModule,IconFieldModule,InputTextModule,TagModule,
-    SelectButtonModule,MatIconModule,MatButtonToggleModule
-  ],
+    InputIconModule, IconFieldModule, InputTextModule, TagModule,
+    SelectButtonModule, MatIconModule, MatButtonToggleModule,
+    CalendarComponent
+],
   providers:[InterfaceService]
 })
 export class DashboardModule { }

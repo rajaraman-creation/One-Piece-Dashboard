@@ -26,13 +26,12 @@
 </div>
 
 <div style="margin-left: calc(5.5rem + 10rem)">
-  
-  <!-- <i class="pi pi-bolt" style="color: yellow"></i>
-  <i class="pi pi-stopwatch" style="color: rgb(218, 37, 82)"></i>
-  <i class="pi pi-flag-fill" style="color: greenyellow"></i>
-  <i class="pi pi-bullseye" style="color: violet"></i> -->
 
-  <div
+  <div *ngIf="values.value=='right'">
+    <app-calendar></app-calendar>
+  </div>
+
+  <div *ngIf="values.value == 'left'"
     style="
       display: flex;
       margin-right: -0.5rem;

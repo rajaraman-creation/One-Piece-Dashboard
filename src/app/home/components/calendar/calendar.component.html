@@ -1,0 +1,12 @@
+<div class="pl-2" style="padding-top: 2px;">
+    <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
+        <ng-template #eventContent let-arg>
+          <b *ngIf="arg.timeText ">{{ arg.timeText }}</b>
+          <p class="m-0">{{arg.event.extendedProps.appointmentFor}}</p>
+              <p class="m-0">{{arg.event.extendedProps.accountName}}</p>
+              <p class="m-0">{{arg.event.title}}</p>
+        </ng-template>
+    </full-calendar>
+</div>
+
+  

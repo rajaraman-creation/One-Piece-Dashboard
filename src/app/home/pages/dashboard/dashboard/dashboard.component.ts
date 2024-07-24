@@ -19,7 +19,7 @@ interface EventItem {
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-  values: any = { icon: 'pi pi-align-left', value: 'left' };
+  values: any = { icon: 'pi pi-align-left', value: 'right' };
 
   selected = model<Date | null>(null);
   stateOptions: any[] = [
