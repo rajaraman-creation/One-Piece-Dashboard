@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SettingsRoutingModule } from './settings-routing.module';
-import { SettingComponent } from './setting/setting.component';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputIconModule } from 'primeng/inputicon';
@@ -11,8 +10,9 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
-
+import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
+import { SettingComponent } from './setting/setting.component';
 @NgModule({
   declarations: [SettingComponent],
   imports: [
@@ -21,7 +21,7 @@ import { CardModule } from 'primeng/card';
     InputTextModule, 
     FormsModule,
     InputIconModule,
-    IconFieldModule,
+    IconFieldModule,TagModule,
     LayoutModule,PanelMenuModule,ButtonModule,TabViewModule,CardModule
   ]
 })

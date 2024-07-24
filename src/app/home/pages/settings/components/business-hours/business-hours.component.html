@@ -1,0 +1,59 @@
+<div class="card">
+
+  <div class="flex gap-8">
+
+    <div class="mb-3 p-1 first-div ">
+      <p class="font-semibold mb-1" style="font-size: large;">Business Hours</p>
+      <span>Set your opening hours and timezone</span>
+    </div>
+
+    <div>
+      <div class="mb-3 p-1">
+        <p class="font-semibold mb-1" style="font-size: medium;">TimeZone</p>
+        <input pInputText id="username" style="width: 100%;" autocomplete="off" />
+      </div>
+
+      <div class="mb-3 p-1">
+        <p class="font-semibold mb-3" style="font-size: medium;">Opening Hours</p>
+
+        <div class="flex gap-4 mb-3" style="align-items: center;" *ngFor="let day of weekDays">
+          <p class="m-0 font-medium" style="width: 5rem;">{{day}}</p>
+          <p-calendar inputId="calendar-timeonly" [(ngModel)]="time" [timeOnly]="true" [style]="{'width':'140px'}"  />
+          <p-calendar inputId="calendar-timeonly" [(ngModel)]="time" [timeOnly]="true" [style]="{'width':'140px'}" />
+        </div>
+        <div class="flex" style="justify-content: start;">
+            <button mat-stroked-button>Edit Hours</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 p-1">
+      <p class="font-semibold mb-1" style="font-size: medium;">Specific dates</p>
+      <div class="flex" style="justify-content: start;">
+        <button mat-stroked-button>Add Hours By Date</button>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+<div class="card">
+
+  <div class="flex gap-8">
+
+    <div class="mb-3 p-1 first-div ">
+      <p class="font-semibold mb-1" style="font-size: large;">Holiday Closure</p>
+      <span>Holidays that your facility will be closed</span>
+    </div>
+
+    <div class="mb-3 p-1">
+      <p class="font-semibold mb-1" style="font-size: medium;">Dates</p>
+      <div class="flex" style="justify-content: start;">
+        <button mat-stroked-button>Create Holidays</button>
+      </div>
+    </div>
+    
+  </div>
+
+</div>

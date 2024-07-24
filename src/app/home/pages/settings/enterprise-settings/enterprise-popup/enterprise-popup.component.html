@@ -1,0 +1,34 @@
+<div >
+  <div class="mb-3 p-1">
+    <p class="font-semibold mb-1">Project Name</p>
+    <input pInputText id="username" style="width: 70%" autocomplete="off" />
+  </div>
+
+  <div class="mb-3 p-1">
+    <p class="font-semibold mb-1">Who is your customer</p>
+    <p-dropdown
+      [options]="cities"
+      [(ngModel)]="selectedCity"
+      optionLabel="name"
+      [showClear]="true"
+      [style]="{ width: '70%' }"
+      placeholder="Select a kind"
+    />
+  </div>
+</div>
+
+<div class="p-2">
+  <p class="font-semibold mb-3">What do you do?</p>
+  <div *ngFor="let category of categories" class="field-checkbox">
+    <p-checkbox
+      [(ngModel)]="selectedCategories"
+      [label]="category.name"
+      name="group"
+      [value]="category"
+    />
+  </div>
+</div>
+
+<div>
+  <button mat-stroked-button>Create</button>
+</div>

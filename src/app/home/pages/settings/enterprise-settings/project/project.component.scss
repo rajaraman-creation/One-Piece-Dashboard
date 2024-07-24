@@ -1,0 +1,25 @@
+.p-selectbutton .p-button {
+    background: #6c757d;
+    border: 1px solid #6c757d;
+    color: #ffffff;
+    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.p-selectbutton .p-button.p-highlight {
+    background: #545b62;
+    border-color: #4e555b;
+    color: #ffffff;
+}
+
+.p-button:focus {
+    outline: 0 none;
+    outline-offset: 0;
+     box-shadow: 0 0 0 0.2rem rgba(136, 60, 174, 0) !important; 
+}
+
+.posc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

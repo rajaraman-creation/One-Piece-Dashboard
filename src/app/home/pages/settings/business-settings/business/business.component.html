@@ -1,0 +1,24 @@
+<div
+  style="
+    position: fixed;
+    border-radius: 5px;
+    padding: 3px 5px 1px 5px;
+    min-height: 100vh;
+    z-index: 2;
+  "
+>
+  <p-menu [model]="items">
+    <ng-template pTemplate="item" let-item>
+      <ng-container *ngIf="item.route">
+        <a [routerLink]="item.route" class="main-menu">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="ml-2 font-semibold">{{ item.label }}</span>
+        </a>
+      </ng-container>
+    </ng-template>
+  </p-menu>
+</div>
+
+<div style="width: calc(100%-13rem); margin-left: 13.8rem" class="mt-1">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,154 @@
+<div class="card" style="min-height: 100vh">
+  <div class="posc mb-4">
+    <div>
+        <button mat-stroked-button (click)="open('CLIENT')">Create Project</button>
+    </div>
+    <input
+      type="text"
+      style="width: 35%; padding-left: 1rem; border-radius: 5px"
+      pInputText
+      placeholder="Search"
+    />
+  </div>
+
+  <div class="flex gap-3 flex-wrap">
+    <div class="card p-2 m-0" style="width: 300px">
+      <div class="flex jsac mb-3">
+        <!-- Check box -->
+        <p-checkbox [binary]="true" inputId="binary" />
+        <div class="flex gap-1 jsac">
+          <!-- Status -->
+          <mat-button-toggle value="bold">In-Active</mat-button-toggle>
+          <!-- More options -->
+          <p-menu #menu [model]="items" [popup]="true" />
+          <i
+            class="pi pi-ellipsis-v"
+            style="color: black"
+            (click)="menu.toggle($event)"
+          ></i>
+        </div>
+      </div>
+
+      <div
+        class="flex mb-3"
+        style="
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+        "
+      >
+        <!-- image -->
+        <p-avatar
+          image="https://helma.healthians.com/stationery/mailer-assets/6405e5ac8b364.jpg"
+          styleClass="mr-2"
+          shape="circle"
+          size="xlarge"
+        />
+        <div class="text-center">
+          <!-- Name -->
+          <p class="font-medium m-0" style="font-size: large">The Medicity</p>
+          <!-- Role -->
+          <span class="text-color-secondary">Health Care</span>
+        </div>
+      </div>
+
+      <div class="card p-2">
+        <div class="flex jsac mb-3">
+          <!-- Department -->
+          <div class="text-left">
+            <span class="text-color-secondary" style="font-size: small">
+              Current Plan
+            </span>
+            <p class="font-medium m-0" style="font-size: small">Starter</p>
+          </div>
+          <!-- Date Joined -->
+          <div class="text-right">
+            <span class="text-color-secondary" style="font-size: small">
+              Date Started
+            </span>
+            <p class="font-medium m-0" style="font-size: small">July 15 2024</p>
+          </div>
+        </div>
+        <!-- Features -->
+        <div class="flex gap-1">
+          <p-tag severity="info" value="Booking" />
+          <p-tag severity="danger" value="Admission" />
+        </div>
+      </div>
+    </div>
+    <div class="card p-2 m-0" style="width: 300px">
+        <div class="flex jsac mb-3">
+          <!-- Check box -->
+          <p-checkbox [binary]="true" inputId="binary" />
+          <div class="flex gap-1 jsac">
+            <!-- Status -->
+            <mat-button-toggle value="bold">In-Active</mat-button-toggle>
+            <!-- More options -->
+            <p-menu #menu [model]="items" [popup]="true" />
+            <i
+              class="pi pi-ellipsis-v"
+              style="color: black"
+              (click)="menu.toggle($event)"
+            ></i>
+          </div>
+        </div>
+  
+        <div
+          class="flex mb-3"
+          style="
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+          "
+        >
+          <!-- image -->
+          <p-avatar
+            image="https://media.istockphoto.com/id/1036660952/vector/auto-service-sign-car-repair-logo-eps.jpg?s=612x612&w=0&k=20&c=YGPt3hie_G2IvanKJcLCTy8oNqP_KAkebHfynjx8QnE="
+            styleClass="mr-2"
+            shape="circle"
+            size="xlarge"
+          />
+          <div class="text-center">
+            <!-- Name -->
+            <p class="font-medium m-0" style="font-size: large">Car care</p>
+            <!-- Role -->
+            <span class="text-color-secondary">Automobile</span>
+          </div>
+        </div>
+  
+        <div class="card p-2">
+          <div class="flex jsac mb-3">
+            <!-- Department -->
+            <div class="text-left">
+              <span class="text-color-secondary" style="font-size: small">
+                Current Plan
+              </span>
+              <p class="font-medium m-0" style="font-size: small">Entrepreneur</p>
+            </div>
+            <!-- Date Joined -->
+            <div class="text-right">
+              <span class="text-color-secondary" style="font-size: small">
+                Date Started
+              </span>
+              <p class="font-medium m-0" style="font-size: small">July 15 2024</p>
+            </div>
+          </div>
+          <!-- Features -->
+          <div class="flex gap-1">
+            <p-tag severity="info" value="Booking" />
+            <p-tag severity="warning" value="Rental" />
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+<p-sidebar [(visible)]="sidebarVisible"  [style]="{ width: '40%', margin: 'auto' }" position="right" >
+    <ng-template pTemplate="header">
+        <span class="font-semibold text-xl">Sidebar</span>
+    </ng-template>
+    <ng-container *ngIf="view=='CLIENT' && sidebarVisible">
+      <app-enterprise-popup></app-enterprise-popup>
+    </ng-container>
+</p-sidebar>

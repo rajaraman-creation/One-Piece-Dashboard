@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
-import { LayoutModule } from './layout/layout.module';
 
 const routes: Routes = [
   {
@@ -33,7 +32,6 @@ const routes: Routes = [
         loadChildren:() => import('./home/pages/settings/settings.module').then((m)=>m.SettingsModule)
       }
     ]
-
   },
   {
     path:'booking',

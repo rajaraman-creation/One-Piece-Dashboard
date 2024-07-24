@@ -3,11 +3,19 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
+}
+
+interface City {
+  name: string;
+  code: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -18,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-service-config',
   standalone: true,
-  imports: [ButtonModule,RippleModule,MatSidenavModule,MatTableModule],
+  imports: [ButtonModule,RippleModule,MatSidenavModule,MatTableModule,DropdownModule,FormsModule],
   templateUrl: './service-config.component.html',
   styleUrl: './service-config.component.scss'
 })
@@ -38,5 +46,19 @@ openContent() {
 
   dataSource = ELEMENT_DATA;
 
+
+  cities: City[] | undefined;
+
+    selectedCity: City | undefined;
+
+    ngOnInit() {
+        this.cities = [
+            { name: 'New York', code: 'NY' },
+            { name: 'Rome', code: 'RM' },
+            { name: 'London', code: 'LDN' },
+            { name: 'Istanbul', code: 'IST' },
+            { name: 'Paris', code: 'PRS' }
+        ];
+    }
 
 }

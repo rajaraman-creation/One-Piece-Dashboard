@@ -1,52 +1,73 @@
 <!-- <p-button label="Open All" [text]="true" (onClick)="toggleAll()" /> -->
-<div class="card ml-4" style="min-height: 100vh">
-  <div class="posc mb-3">
-    <input
-      type="text"
-      style="width: 35%; padding-left: 1rem; border-radius: 5px"
-      pInputText
-      placeholder="Search"
-    />
-  </div>
+<div class="card" style="min-height: 100vh">
+ 
   
   <p-tabView>
-
     <p-tabPanel header="Enterprise Management">
+      <div class="posc mb-5">
+        <input
+          type="text"
+          style="width: 35%; padding-left: 1rem; border-radius: 5px"
+          pInputText
+          placeholder="Search"
+        />
+      </div>
       <div class="flex gap-4">
-        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="workspace-configuration">
-          <h2>Sub Accounts</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        <div class="cards" style="width: 280px; height: 180px;" routerLink="enterprise/general">
+          <p class="card-title">Enterprise Configurations</p>
+          <p class="small-desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+            veritatis nobis saepe itaque rerum nostrum aliquid obcaecati odio
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
         </div>
-        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="employee-configuration">
-          <h2>Advance Pricing</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
-        </div>
-        <div class="card p-3" style="width: 280px; height: 180px;">
-          <h2>Business Hours</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        <div class="cards" style="width: 280px; height: 180px;" routerLink="enterprise/sub-account">
+          <p class="card-title">Business Configurations</p>
+          <p class="small-desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+            veritatis nobis saepe itaque rerum nostrum aliquid obcaecati odio
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
         </div>
       </div>
     </p-tabPanel>
 
     <p-tabPanel header="Business Management">
+      <div class="posc mb-5">
+        <input
+          type="text"
+          style="width: 35%; padding-left: 1rem; border-radius: 5px"
+          pInputText
+          placeholder="Search"
+        />
+      </div>
       <div class="flex gap-4">
-        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="service-configuration">
-          <h2>Service Configuration</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        <div class="cards" style="width: 280px; height: 180px; padding: 1em 1.2em;" routerLink="business">
+          <p-tag severity="info" value="Health Care" />
+          <p class="card-title mt-2">Dog Station</p>
+          <p class="small-desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
         </div>
-        <div class="card p-3 cursor-pointer" style="width: 280px; height: 180px;" routerLink="employee-configuration">
-          <h2>Employee Configuration</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
-        </div>
-        <div class="card p-3" style="width: 280px; height: 180px;">
-          <h2>Business Hours</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
-        </div>
-        <div class="card p-3" style="width: 280px; height: 180px;">
-          <h2>Staff Calendar</h2>
-          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        <div class="cards" style="width: 280px; height: 180px; padding: 1em 1.2em;" routerLink="business">
+          <p-tag severity="info" value="Health Care" />
+          <p class="card-title mt-2">PuppyCharge</p>
+          <p class="small-desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
         </div>
       </div>
+
       
     </p-tabPanel>
     

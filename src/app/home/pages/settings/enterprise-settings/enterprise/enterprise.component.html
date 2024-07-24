@@ -1,0 +1,66 @@
+<div style="position: fixed; border-radius: 5px; padding: 5px 5px 1px 5px; min-height: 100vh;z-index: 2;">
+            <p-tieredMenu [model]="mainMenus">
+                <ng-template pTemplate="item" let-item let-hasSubmenu="hasSubmenu">
+                    <ng-container *ngIf="item.route; else withoutRoute">
+                        <a [routerLink]="item.route" [href]="item.href" class="main-menu">
+                            <!-- <span [class]="item.icon"></span> -->
+                            <mat-icon>{{item.icon}}</mat-icon>
+                            <span class="ml-2 font-semibold">{{ item.label }}</span>
+                            <span *ngIf="hasSubmenu" class="pi pi-angle-right ml-auto" ></span>
+                        </a>
+                    </ng-container>
+                    <ng-template #withoutRoute>
+                        <ng-container *ngIf="item.url; else withoutUrl">
+                            <a [href]="item.url" [target]="item.target" class="main-menu">
+                                <mat-icon>{{item.icon}}</mat-icon>
+                                <span class="ml-2 font-semibold">{{ item.label }}</span>
+                                <span *ngIf="hasSubmenu" class="pi pi-angle-right ml-auto" style="transform: translateY(2px)!important;"></span>
+                            </a>
+                        </ng-container>
+                        <ng-template #withoutUrl>
+                            <a class="main-menu">
+                                <mat-icon>{{item.icon}}</mat-icon>
+                                <span class="ml-2 font-semibold">{{ item.label }}</span>
+                                <span *ngIf="hasSubmenu" class="pi pi-angle-right ml-auto" style="transform: translateY(2px);"></span>
+                            </a>
+                        </ng-template>
+                    </ng-template>
+                </ng-template>
+            </p-tieredMenu>
+            <div class="mt-2">
+                <p-tieredMenu [model]="items">
+                    <ng-template pTemplate="item" let-item let-hasSubmenu="hasSubmenu">
+                        <ng-container *ngIf="item.route; else withoutRoute">
+                            <a [routerLink]="item.route" [href]="item.href" class="main-menu">
+                                <!-- <span [class]="item.icon"></span> -->
+                                <mat-icon>{{item.icon}}</mat-icon>
+                                <span class="ml-2 font-semibold">{{ item.label }}</span>
+                                <span *ngIf="hasSubmenu" class="pi pi-angle-right ml-auto" ></span>
+                            </a>
+                        </ng-container>
+                        <ng-template #withoutRoute>
+                            <ng-container *ngIf="item.url; else withoutUrl">
+                                <a [href]="item.url" [target]="item.target" class="main-menu">
+                                    <mat-icon>{{item.icon}}</mat-icon>
+                                    <span class="ml-2 font-semibold">{{ item.label }}</span>
+                                    <span *ngIf="hasSubmenu" class="pi pi-angle-right ml-auto" style="transform: translateY(2px)!important;"></span>
+                                </a>
+                            </ng-container>
+                            <ng-template #withoutUrl>
+                                <a class="main-menu">
+                                    <mat-icon>{{item.icon}}</mat-icon>
+                                    <span class="ml-2 font-semibold">{{ item.label }}</span>
+                                    <span *ngIf="hasSubmenu" class="pi pi-angle-right ml-auto" style="transform: translateY(2px);"></span>
+                                </a>
+                            </ng-template>
+                        </ng-template>
+                    </ng-template>
+                </p-tieredMenu>
+            </div>
+</div> 
+
+<div style="width: calc(100%-13rem); margin-left: 13.8rem;" class="mt-1">
+    <router-outlet></router-outlet>
+</div>
+
+

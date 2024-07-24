@@ -172,11 +172,39 @@ body {
   --mat-table-header-headline-size:1rem;
 
   // Button
-  --mdc-outlined-button-outline-color: var(--primary-color);
+  --mdc-outlined-button-outline-color:         
+;
   --mdc-outlined-button-label-text-color: var(--primary-color);
+
+  --mat-standard-button-toggle-text-color: #ff435b;
+  --mat-standard-button-toggle-background-color: var(--surface-overlay);
 
   // Icon
   --mat-icon-color:var(--primary-color);
+}
+
+.p-menu .p-submenu-header {
+  margin: 0;
+  padding: 0.3rem .5rem;
+  color: #212529;
+  background: #883cae18;
+  font-weight: 600;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.mat-grid-tile-content {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: block !important;
+  align-items: center;
+  justify-content: start !important;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 
