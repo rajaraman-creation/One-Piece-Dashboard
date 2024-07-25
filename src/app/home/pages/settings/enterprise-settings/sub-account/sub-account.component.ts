@@ -6,12 +6,12 @@ import { MatTableModule } from '@angular/material/table';
 import { TagModule } from 'primeng/tag';
 
 import { TabViewModule } from 'primeng/tabview';
-import { ServiceConfigComponent } from "../../components/service-config/service-config.component";
 import { InputTextModule } from 'primeng/inputtext';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { EmployeeConfigComponent } from '../../components/employee-config/employee-config.component';
+import { ServiceConfigComponent } from '../../components/service-config/service-config.component';
 export interface PeriodicElement {
   name: string;
   rating: number;
@@ -29,7 +29,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-sub-account',
   standalone: true,
-  imports: [ButtonModule,TagModule,MatDialogModule,MatButtonModule,InputTextModule, RippleModule, MatSidenavModule, MatTableModule, TabViewModule, ServiceConfigComponent, EmployeeConfigComponent],
+  imports: [ButtonModule,TagModule,MatDialogModule,MatButtonModule,InputTextModule, RippleModule,ServiceConfigComponent, MatSidenavModule, MatTableModule, TabViewModule, EmployeeConfigComponent],
   templateUrl: './sub-account.component.html',
   styleUrl: './sub-account.component.scss',
 })

@@ -32,7 +32,8 @@
     "@fullcalendar/daygrid": "^6.1.10",
     "@fullcalendar/interaction": "^6.1.10",
     "@fullcalendar/list": "^6.1.10",
-    "@fullcalendar/timegrid": "^6.1.10"
+    "@fullcalendar/timegrid": "^6.1.10",
+    "@daypilot/daypilot-lite-angular": "^3.23.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.8",

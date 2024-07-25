@@ -1,4 +1,4 @@
-<div class="side_menu_op">
+<div >
   <div class="w-full mb-2" style="width: 100%">
     <div style="display: flex; justify-content: start;">
       <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="values.value">
@@ -11,27 +11,28 @@
       </mat-button-toggle-group>
     </div>
   </div>
-  <div class="card" style="padding: 1px;margin: 0px 0px 10px 0px;">
-    <mat-calendar
-      [(selected)]="selected"
-      style="
-        background-color: var(--surface-overlay);
-        color: antiquewhite !important;
-      "
-    ></mat-calendar>
-  </div>
-  <div class="pb-2">
-    <app-dashboard-meter [dataSource]="meter"></app-dashboard-meter>
-  </div>
-</div>
-
-<div style="margin-left: calc(5.5rem + 10rem)">
 
   <div *ngIf="values.value=='right'">
-    <app-calendar></app-calendar>
+    <!-- <app-calendar></app-calendar> -->
+     <app-pilot-calendar></app-pilot-calendar>
   </div>
 
-  <div *ngIf="values.value == 'left'"
+  <div style="margin-left: calc(5.5rem + 10.5rem)" *ngIf="values.value == 'left'">
+    <div class="side_menu_op">
+      <div class="card" style="padding: 1px;margin: 0px 0px 10px 0px;">
+        <mat-calendar
+          [(selected)]="selected"
+          style="
+            background-color: var(--surface-overlay);
+            color: antiquewhite !important;
+          "
+        ></mat-calendar>
+      </div>
+      <div class="pb-2">
+        <app-dashboard-meter [dataSource]="meter"></app-dashboard-meter>
+      </div>
+    </div>
+    <div 
     style="
       display: flex;
       margin-right: -0.5rem;
@@ -779,8 +780,14 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
+
 </div>
+
+
+
+
 
 <!-- <div class="col-12 md:col-4">
   <div class="card p-0">

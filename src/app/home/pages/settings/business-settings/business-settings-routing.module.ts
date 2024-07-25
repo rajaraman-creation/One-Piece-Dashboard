@@ -17,7 +17,7 @@ const routes: Routes = [ {
         import('../components/business-hours/business-hours.component').then((m) => m.BusinessHoursComponent),
     },
     {
-      path: 'services',
+      path: 'service',
       loadComponent:() =>
         import('../components/service-config/service-config.component').then((m) => m.ServiceConfigComponent),
     },

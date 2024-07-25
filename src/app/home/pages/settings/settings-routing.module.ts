@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SettingComponent } from './setting/setting.component';
-import { ServiceConfigComponent } from './components/service-config/service-config.component';
 import { EmployeeConfigComponent } from './components/employee-config/employee-config.component';
 import { SubAccountComponent } from './enterprise-settings/sub-account/sub-account.component';
 import { EntityConfigurationComponent } from './components/entity-configuration/entity-configuration.component';

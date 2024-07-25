@@ -28,6 +28,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { CalendarComponent } from "../../components/calendar/calendar.component";
+import { PilotCalendarComponent } from "../../components/pilot-calendar/pilot-calendar.component";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CalendarComponent } from "../../components/calendar/calendar.component"
     MenuModule,
     InputIconModule, IconFieldModule, InputTextModule, TagModule,
     SelectButtonModule, MatIconModule, MatButtonToggleModule,
-    CalendarComponent
+    CalendarComponent,
+    PilotCalendarComponent
 ],
   providers:[InterfaceService]
 })

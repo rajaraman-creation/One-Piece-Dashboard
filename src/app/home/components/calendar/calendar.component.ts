@@ -18,21 +18,16 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 })
 export class CalendarComponent {
   calendarVisible = signal(true);
+// schedulerLicenseKey: '0853597523-fcs-1630506178',
 
   calendarOptions = signal<CalendarOptions>({
-    themeSystem: 'bootstrap5',
-    plugins: [
-      interactionPlugin,
-      dayGridPlugin,
-      timeGridPlugin,
-      listPlugin,
-    ],
+    plugins: [interactionPlugin,dayGridPlugin,timeGridPlugin,listPlugin],
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek,resourceTimeline'
     },
-    initialView: 'dayGridMonth',
+    initialView: 'timeGridWeek',
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
     editable: true,

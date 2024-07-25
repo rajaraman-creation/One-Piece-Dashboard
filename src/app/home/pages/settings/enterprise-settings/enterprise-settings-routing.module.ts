@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ServiceConfigComponent } from '../components/service-config/service-config.component';
 import { BusinessHoursComponent } from '../components/business-hours/business-hours.component';
 import { SubAccountComponent } from './sub-account/sub-account.component';
 import { EnterpriseComponent } from './enterprise/enterprise.component';
+import { ServiceConfigComponent } from '../components/service-config/service-config.component';
 
 const routes: Routes = [
   {
