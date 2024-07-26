@@ -1,8 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import {DataService} from "./data.service";
-import { DayPilotCalendarComponent, DayPilotMonthComponent, DayPilotNavigatorComponent, DayPilot, DayPilotModule } from '@daypilot/daypilot-lite-angular';
+import { DataService } from './data.service';
+import {
+  DayPilotCalendarComponent,
+  DayPilotMonthComponent,
+  DayPilotNavigatorComponent,
+  DayPilot,
+  DayPilotModule,
+} from '@daypilot/daypilot-lite-angular';
 import { forkJoin } from 'rxjs';
-
+import { aR } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-pilot-calendar',
@@ -10,26 +16,26 @@ import { forkJoin } from 'rxjs';
   imports: [DayPilotModule],
   templateUrl: './pilot-calendar.component.html',
   styleUrl: './pilot-calendar.component.scss',
-  providers:[
-    DataService
-  ]
+  providers: [DataService],
 })
 export class PilotCalendarComponent {
-
-  @ViewChild("calendar")
+  @ViewChild('calendar')
   calendar!: DayPilotCalendarComponent;
 
   config: DayPilot.CalendarConfig = {
-    viewType: "Resources",
+    viewType: 'Resources',
     headerHeight: 100,
-    startDate: "2025-09-01",
+    startDate: '2025-09-01',
     contextMenu: new DayPilot.Menu({
       items: [
         {
-          text: "Edit...",
-          onClick: async args => {
+          text: 'Edit...',
+          onClick: async (args) => {
             const data = args.source.data;
-            const modal = await DayPilot.Modal.prompt("Edit event text:", data.text);
+            const modal = await DayPilot.Modal.prompt(
+              'Edit event text:',
+              data.text
+            );
 
             const calendar = this.calendar.control;
             if (modal.canceled) {
@@ -38,18 +44,21 @@ export class PilotCalendarComponent {
 
             data.text = modal.result;
             calendar.events.update(data);
-          }
+          },
         },
         {
-          text: "Delete",
-          onClick: args => {
+          text: 'Delete',
+          onClick: (args) => {
             this.calendar.control.events.remove(args.source);
-          }
-        }
-      ]
+          },
+        },
+      ],
     }),
-    onTimeRangeSelected: async args => {
-      const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
+    onTimeRangeSelected: async (args) => {
+      const modal = await DayPilot.Modal.prompt(
+        'Create a new event:',
+        'Event 1'
+      );
 
       const calendar = this.calendar.control;
       calendar.clearSelection();
@@ -62,62 +71,48 @@ export class PilotCalendarComponent {
         end: args.end,
         id: DayPilot.guid(),
         text: modal.result,
-        resource: args.resource
+        resource: args.resource,
       });
-
     },
-    onBeforeHeaderRender: args => {
+    onBeforeHeaderRender: (args) => {
       const data = args.column.data;
       const header = args.header;
-      header.verticalAlignment = "top";
+      header.verticalAlignment = 'top';
       if (data.tags.image) {
         args.header.areas = [
           {
-            left: "calc(50% - 30px)",
+            left: 'calc(50% - 30px)',
             bottom: 10,
             height: 60,
             width: 60,
             image: data.tags.image,
-            style: "border-radius: 40px; overflow: hidden; border: 3px solid #fff;"
-          }
+            style:
+              'border-radius: 40px; overflow: hidden; border: 3px solid #fff;',
+          },
         ];
       }
     },
-    onBeforeEventRender: args => {
+    onBeforeEventRender: (args) => {
       args.data.areas = [
         {
           top: 3,
           right: 3,
           width: 24,
           height: 24,
-          action: "ContextMenu",
+          action: 'ContextMenu',
           padding: 2,
-          symbol: "/icons/daypilot.svg#threedots-h",
-          cssClass: "event-menu",
-          toolTip: "Menu"
-        }
+          symbol: '/icons/daypilot.svg#threedots-h',
+          cssClass: 'event-menu',
+          toolTip: 'Menu',
+        },
       ];
-    }
+    },
   };
 
-  
-
- 
-
-
-
-
-
-
-
-
-
-
-
-  @ViewChild("day") day!: DayPilotCalendarComponent;
-  @ViewChild("week") week!: DayPilotCalendarComponent;
-  @ViewChild("month") month!: DayPilotMonthComponent;
-  @ViewChild("navigator") nav!: DayPilotNavigatorComponent;
+  @ViewChild('day') day!: DayPilotCalendarComponent;
+  @ViewChild('week') week!: DayPilotCalendarComponent;
+  @ViewChild('month') month!: DayPilotMonthComponent;
+  @ViewChild('navigator') nav!: DayPilotNavigatorComponent;
 
   events: DayPilot.EventData[] = [];
 
@@ -126,78 +121,83 @@ export class PilotCalendarComponent {
   contextMenu = new DayPilot.Menu({
     items: [
       {
-        text: "Delete",
-        onClick: args => {
+        text: 'Delete',
+        onClick: (args) => {
           const event = args.source;
           const dp = event.calendar;
           dp.events.remove(event);
-        }
+        },
       },
       {
-        text: "Edit...",
-        onClick: async args => {
+        text: 'Edit...',
+        onClick: async (args) => {
           const event = args.source;
           const dp = event.calendar;
 
-          const modal = await DayPilot.Modal.prompt("Edit event text:", event.data.text);
+          const modal = await DayPilot.Modal.prompt(
+            'Edit event text:',
+            event.data.text
+          );
           dp.clearSelection();
-          if (!modal.result) { return; }
+          if (!modal.result) {
+            return;
+          }
           event.data.text = modal.result;
           dp.events.update(event);
-        }
+        },
       },
       {
-        text: "-"
+        text: '-',
       },
       {
-        text: "Red",
-        onClick: args => {
+        text: 'Red',
+        onClick: (args) => {
           const event = args.source;
           const dp = event.calendar;
           event.data.backColor = DataService.colors.red;
           dp.events.update(event);
-        }
+        },
       },
       {
-        text: "Green",
-        onClick: args => {
+        text: 'Green',
+        onClick: (args) => {
           const event = args.source;
           const dp = event.calendar;
           event.data.backColor = DataService.colors.green;
 
           dp.events.update(event);
-        }
+        },
       },
       {
-        text: "Blue",
-        onClick: args => {
+        text: 'Blue',
+        onClick: (args) => {
           const event = args.source;
           const dp = event.calendar;
           event.data.backColor = DataService.colors.blue;
 
           dp.events.update(event);
-        }
+        },
       },
       {
-        text: "Yellow",
-        onClick: args => {
+        text: 'Yellow',
+        onClick: (args) => {
           const event = args.source;
           const dp = event.calendar;
           event.data.backColor = DataService.colors.yellow;
           dp.events.update(event);
-        }
+        },
       },
       {
-        text: "Gray",
-        onClick: args => {
+        text: 'Gray',
+        onClick: (args) => {
           const event = args.source;
           const dp = event.calendar;
           event.data.backColor = DataService.colors.gray;
 
           dp.events.update(event);
-        }
-      }
-    ]
+        },
+      },
+    ],
   });
 
   // changeHeight(height: string): void {
@@ -208,9 +208,16 @@ export class PilotCalendarComponent {
     showMonths: 1,
     cellWidth: 35,
     cellHeight: 35,
-    onVisibleRangeChanged: args => {
+    selectMode: 'Day',
+    onVisibleRangeChanged: (args) => {
       this.loadEvents();
-    }
+    },
+    onTimeRangeSelected: (args) => {
+      this.config.viewType = 'Resources';
+      this.config.startDate = args.start;
+      console.log(args);
+      // this.config.days = args.days;
+    },
   };
 
   selectTomorrow() {
@@ -232,11 +239,11 @@ export class PilotCalendarComponent {
   };
 
   configWeek: DayPilot.CalendarConfig = {
-    viewType: "Week",
-    heightSpec:"BusinessHours",
-    businessBeginsHour:10,
-    businessEndsHour:21,
-    cellHeight:50,
+    viewType: 'Week',
+    heightSpec: 'BusinessHours',
+    businessBeginsHour: 10,
+    businessEndsHour: 21,
+    cellHeight: 50,
     durationBarVisible: false,
     contextMenu: this.contextMenu,
     onTimeRangeSelected: this.onTimeRangeSelected.bind(this),
@@ -261,108 +268,175 @@ export class PilotCalendarComponent {
     const from = new DayPilot.Date(this.config.startDate);
     const to = from.addDays(1);
 
-    forkJoin([
-      this.ds.getResources(),
-      this.ds.getEventss(from, to)
-    ]).subscribe(data => {
+    forkJoin([this.ds.getResources(), this.ds.getEventss(from, to)]).subscribe(
+      (data) => {
         const options = {
           columns: data[0],
-          events: data[1]
+          events: data[1],
         };
         this.calendar.control.update(options);
-    });
+      }
+    );
   }
 
   loadEvents(): void {
     const from = this.nav.control.visibleStart();
     const to = this.nav.control.visibleEnd();
-    this.ds.getEvents(from, to).subscribe(result => {
+    this.ds.getEvents(from, to).subscribe((result) => {
       this.events = result;
     });
   }
 
-  viewDay():void {
-    this.configNavigator.selectMode = "Day";
+  viewDay(): void {
+    this.configNavigator.selectMode = 'Day';
     this.configDay.visible = true;
     this.configWeek.visible = false;
     this.configMonth.visible = false;
   }
 
-  viewWeek():void {
-    this.configNavigator.selectMode = "Week";
+  viewWeek(): void {
+    this.configNavigator.selectMode = 'Week';
     this.configDay.visible = false;
     this.configWeek.visible = true;
     this.configMonth.visible = false;
     this.config.visible = true;
   }
 
-  viewMonth():void {
-    this.configNavigator.selectMode = "Month";
+  viewMonth(): void {
+    this.configNavigator.selectMode = 'Month';
     this.configDay.visible = false;
     this.configWeek.visible = false;
     this.configMonth.visible = true;
   }
 
-  
-
   onBeforeEventRender(args: any) {
-      const dp = args.control;
-      args.data.areas = [
-        {
-          top: 3,
-          right: 3,
-          width: 20,
-          height: 20,
-          symbol: "/icons/daypilot.svg#minichevron-down-2",
-          fontColor: "#fff",
-          toolTip: "Show context menu",
-          action: "ContextMenu",
-        },
-        {
-          top: 3,
-          right: 25,
-          width: 20,
-          height: 20,
-          symbol: "/icons/daypilot.svg#x-circle",
-          fontColor: "#fff",
-          action: "None",
-          toolTip: "Delete event",
-          onClick: async (args: any)   => {
-            dp.events.remove(args.source);
-          }
-        }
-      ];
+    console.log(args, 'onBeforeEventRender');
+    let accountInfo =
+      args.data.tags && args.data.tags.account
+        ? `${args.data.tags.account}`
+        : '';
+    let serviceInfo =
+      args.data.tags && args.data.tags.service
+        ? `${args.data.tags.service}`
+        : '';
+    let durationInfo =
+      args.data.tags && args.data.tags.duration
+        ? `${args.data.tags.duration}`
+        : '';
+    let statusInfo =
+      args.data.tags && args.data.tags.status ? `${args.data.tags.status}` : '';
 
-      args.data.areas.push({
-        bottom: 5,
-        left: 5,
-        width: 36,
-        height: 36,
-        action: "None",
-        image: `https://picsum.photos/36/36?random=${args.data.id}`,
-        style: "border-radius: 50%; border: 2px solid #fff; overflow: hidden;",
-      });
+    let html = `
+    <div class="custom-event">
+        <p class="mt-1 mb-0 font-semibold" style="margin-left:30px;">${args.data.text}</p>
+        <div class="event-details">
+        <div class="flex justify-content-start">
+            <p class="m-0 font-semibold"> ${accountInfo}</p>
+        </div>
+          <div class="flex justify-content-end">
+            <p class="m-0 mr-1 font-semibold">${serviceInfo}</p>
+          </div>
+          <div class="flex justify-content-end">
+            <p class="m-0 mr-1">${durationInfo}</p>
+          </div>
+        </div>
+    </div>
+`;
+    args.data.html = html;
+    var type = args.data.tags && args.data.tags.type;
+    switch (type) {
+      case 'important':
+        args.data.fontColor = '#fff';
+        args.data.backColor = '#E06666';
+        args.data.borderColor = '#E06666';
+        break;
+      case 'note':
+        args.data.fontColor = '#000';
+        args.data.backColor = '#9FC5E8';
+        args.data.borderColor = '#3D85C6';
+        break;
+      case 'warning':
+        args.data.fontColor = '#000';
+        args.data.backColor = '#FFE599';
+        args.data.borderColor = '#F1C232';
+        break;
+      case 'complete':
+        args.data.fontColor = '#000';
+        args.data.backColor = '#B6D7A8';
+        args.data.borderColor = '#6AA84F';
+        break;
+    }
+    const dp = args.control;
+    args.data.areas = [
+      {
+        top: 9,
+        right: 18,
+        width: 20,
+        height: 20,
+        icon: 'fas fa-circle-check',
+        fontColor: '#000',
+        toolTip: 'Show context menu',
+        action: 'ContextMenu',
+      },
+      {
+        top: 9,
+        right: 0,
+        width: 20,
+        height: 20,
+        icon: 'fas fa-bars',
+        fontColor: '#000',
+        action: 'None',
+        toolTip: 'Delete event',
+        onClick: async (args: any) => {
+          dp.events.remove(args.source);
+        },
+      },
+    ];
+
+    args.data.areas.push({
+      top: 3,
+      left: 5,
+      width: 25,
+      height: 25,
+      action: 'None',
+      image: `https://picsum.photos/36/36?random=${args.data.id}`,
+      style: 'border-radius: 50%; border: 2px solid #fff; overflow: hidden;',
+    });
   }
 
   async onTimeRangeSelected(args: any) {
-    const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
+    const modal = await DayPilot.Modal.prompt('Create a new event:', 'Event 1');
     const dp = args.control;
     dp.clearSelection();
-    if (!modal.result) { return; }
-    dp.events.add(new DayPilot.Event({
-      start: args.start,
-      end: args.end,
-      id: DayPilot.guid(),
-      text: modal.result
-    }));
+    if (!modal.result) {
+      return;
+    }
+    dp.events.add(
+      new DayPilot.Event({
+        start: args.start,
+        end: args.end,
+        id: DayPilot.guid(),
+        text: modal.result,
+      })
+    );
   }
 
   async onEventClick(args: any) {
     const form = [
-      {name: "Text", id: "text"},
-      {name: "Start", id: "start", dateFormat: "MM/dd/yyyy", type: "datetime"},
-      {name: "End", id: "end", dateFormat: "MM/dd/yyyy", type: "datetime"},
-      {name: "Color", id: "backColor", type: "select", options: this.ds.getColors()},
+      { name: 'Text', id: 'text' },
+      {
+        name: 'Start',
+        id: 'start',
+        dateFormat: 'MM/dd/yyyy',
+        type: 'datetime',
+      },
+      { name: 'End', id: 'end', dateFormat: 'MM/dd/yyyy', type: 'datetime' },
+      {
+        name: 'Color',
+        id: 'backColor',
+        type: 'select',
+        options: this.ds.getColors(),
+      },
     ];
 
     const data = args.e.data;
@@ -377,5 +451,4 @@ export class PilotCalendarComponent {
 
     dp.events.update(modal.result);
   }
-
 }

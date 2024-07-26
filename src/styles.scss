@@ -186,6 +186,16 @@ body {
   // Calendar 
   --fc-border-color: var(--primary-color);
 }
+.custom-event{
+  // border: 1px solid rgb(20, 11, 146);
+}
+.event-details{
+  border: 1px solid #0000;
+  margin-top: 10px;
+}
+.title-event{
+  margin-bottom: 0px;
+}
 
 .p-menu .p-submenu-header {
   margin: 0;
