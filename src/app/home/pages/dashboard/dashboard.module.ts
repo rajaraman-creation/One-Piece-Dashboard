@@ -28,6 +28,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { PilotCalendarComponent } from "../../components/pilot-calendar/pilot-calendar.component";
+import { DataService } from '../../components/pilot-calendar/data.service';
 
 
 @NgModule({
@@ -51,6 +52,6 @@ import { PilotCalendarComponent } from "../../components/pilot-calendar/pilot-ca
     SelectButtonModule, MatIconModule, MatButtonToggleModule,
     PilotCalendarComponent
 ],
-  providers:[InterfaceService]
+  providers:[InterfaceService,DataService]
 })
 export class DashboardModule { }

@@ -383,7 +383,6 @@ export class PilotCalendarComponent {
       if (staff != null) {
         this.ds.getResources().subscribe((resources) => {
           let updatedResources = [...this.calendar.control.columns.list];
-          console.log(this.calendar.control.columns.list, 'Resources before');
 
           if (staff?.checked) {
             // Add resource if not already present
@@ -419,7 +418,6 @@ export class PilotCalendarComponent {
             );
           }
 
-          console.log(updatedResources, 'Resources After');
           // Update the calendar's resources
           this.calendar.control.update({
             columns: updatedResources,
