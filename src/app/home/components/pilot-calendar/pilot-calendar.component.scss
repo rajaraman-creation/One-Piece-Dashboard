@@ -4,12 +4,13 @@
 }
 
 .navigator {
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 .content {
   flex-grow: 1;
   margin-top: -42px;
+  gap: 1rem;
 
 }
 .calendar{
@@ -19,12 +20,12 @@
 .buttons {
   margin-bottom: 10px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
 }
 
 button {
-  background-color: #3c78d8;
-  color: white;
+  background-color: #c0c0c0;
+  color: rgb(17, 2, 2);
   border: 0;
   padding: 0.5rem 1rem;
   width: 80px;
@@ -42,8 +43,9 @@ button:last-child {
 }
 
 button.selected {
-  background-color: #1c4587;
+  background-color: var(--primary-color);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  color: var(--primary-color-text);
 }
 
 button:first-child {
@@ -72,4 +74,8 @@ button:active {
 
 .custom-event{
   border: 1px solid red;
+}
+
+.tog_max_width{
+  width: 120px !important;
 }

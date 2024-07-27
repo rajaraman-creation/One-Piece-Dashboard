@@ -8,24 +8,83 @@ import {
   DayPilotModule,
 } from '@daypilot/daypilot-lite-angular';
 import { forkJoin } from 'rxjs';
-import { aR } from '@fullcalendar/core/internal-common';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { SidebarModule } from 'primeng/sidebar';
+import { EventManagerComponent } from '../event-manager/event-manager.component';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { DashboardMeterComponent } from '../dashboard-meter/dashboard-meter.component';
+import { DashboardMeter } from '../../service/interface.service';
+import { BehaviorSubjectsService } from '../../service/behaviour-subjects.service';
 @Component({
   selector: 'app-pilot-calendar',
   standalone: true,
-  imports: [DayPilotModule],
+  imports: [
+    DayPilotModule,
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    SidebarModule,
+    EventManagerComponent,
+    MatButtonToggleModule,
+    DashboardMeterComponent,
+  ],
   templateUrl: './pilot-calendar.component.html',
   styleUrl: './pilot-calendar.component.scss',
   providers: [DataService],
 })
 export class PilotCalendarComponent {
+  businessChange() {
+    if(this.values.value != 'service'){
+      this.viewMonth();
+    }else{
+      this.viewDay();
+      const from = new DayPilot.Date(this.config.startDate);
+      const to = from.addDays(1);
+      forkJoin([this.ds.getEventss(from, to)]).subscribe(
+        (data) => {
+          const options = {
+            events: data[0],
+          };
+          this.calendar.control.update(options);
+        }
+      );
+    }
+  }
+
+  values: any = { icon: 'pi pi-align-left', value: 'service' };
+  meter: DashboardMeter[] = [
+    {
+      name: 'Today Bookings',
+      // status: '+5%',
+      currentValue: 20,
+      progressLink: 'assets/rate.svg',
+    },
+    {
+      name: 'Leaving Today',
+      currentValue: 30,
+      // progressLink: 'assets/rate.svg',
+    },
+    {
+      name: 'Check Out',
+      currentValue: 30,
+      // progressLink: 'assets/value.svg',
+    },
+  ];
+
   @ViewChild('calendar')
   calendar!: DayPilotCalendarComponent;
 
   config: DayPilot.CalendarConfig = {
+    heightSpec: 'BusinessHours',
+    businessBeginsHour: 10,
+    businessEndsHour: 21,
     viewType: 'Resources',
     headerHeight: 100,
-    startDate: '2025-09-01',
+    startDate: DayPilot.Date.today().firstDayOfWeek().addHours(10.5),
     contextMenu: new DayPilot.Menu({
       items: [
         {
@@ -54,6 +113,7 @@ export class PilotCalendarComponent {
         },
       ],
     }),
+
     onTimeRangeSelected: async (args) => {
       const modal = await DayPilot.Modal.prompt(
         'Create a new event:',
@@ -78,21 +138,56 @@ export class PilotCalendarComponent {
       const data = args.column.data;
       const header = args.header;
       header.verticalAlignment = 'top';
-      if (data.tags.image) {
-        args.header.areas = [
-          {
-            left: 'calc(50% - 30px)',
-            bottom: 10,
-            height: 60,
-            width: 60,
-            image: data.tags.image,
-            style:
-              'border-radius: 40px; overflow: hidden; border: 3px solid #fff;',
-          },
-        ];
-      }
+
+      // if (data.tags.image) {
+      //   args.header.areas = [
+      //     {
+      //       left: 'calc(50% - 30px)',
+      //       bottom: 10,
+      //       height: 60,
+      //       width: 60,
+      //       image: data.tags.image,
+      //       style:
+      //         'border-radius: 40px; overflow: hidden; border: 3px solid #fff;',
+      //     },
+      //   ];
+      // }
     },
     onBeforeEventRender: (args) => {
+      let accountInfo =
+        args.data.tags && args.data.tags.account
+          ? `${args.data.tags.account}`
+          : '';
+      let serviceInfo =
+        args.data.tags && args.data.tags.service
+          ? `${args.data.tags.service}`
+          : '';
+      let durationInfo =
+        args.data.tags && args.data.tags.duration
+          ? `${args.data.tags.duration}`
+          : '';
+      let statusInfo =
+        args.data.tags && args.data.tags.status
+          ? `${args.data.tags.status}`
+          : '';
+
+      let html = `
+    <div class="custom-event" style="font-size:.8rem">
+        <p class="mb-0 font-semibold">${args.data.text}</p>
+        <div class="event-details">
+          <div class="flex justify-content-start">
+              <p class="m-0 font-semibold"> ${accountInfo}</p>
+          </div>
+          <div class="flex justify-content-end mt-1">
+            <p class="m-0 mr-1 font-semibold">${serviceInfo}</p>
+          </div>
+          <div class="flex justify-content-end">
+            <p class="m-0 mr-1">${durationInfo}</p>
+          </div>
+        </div>
+    </div>
+`;
+      args.data.html = html;
       args.data.areas = [
         {
           top: 3,
@@ -100,8 +195,7 @@ export class PilotCalendarComponent {
           width: 24,
           height: 24,
           action: 'ContextMenu',
-          padding: 2,
-          symbol: '/icons/daypilot.svg#threedots-h',
+          icon: 'fas fa-circle-check',
           cssClass: 'event-menu',
           toolTip: 'Menu',
         },
@@ -212,6 +306,7 @@ export class PilotCalendarComponent {
     onVisibleRangeChanged: (args) => {
       this.loadEvents();
     },
+
     onTimeRangeSelected: (args) => {
       this.config.viewType = 'Resources';
       this.config.startDate = args.start;
@@ -248,6 +343,7 @@ export class PilotCalendarComponent {
     contextMenu: this.contextMenu,
     onTimeRangeSelected: this.onTimeRangeSelected.bind(this),
     onBeforeEventRender: this.onBeforeEventRender.bind(this),
+    onBeforeCellRender: this.onBeforeCellRender.bind(this),
     onEventClick: this.onEventClick.bind(this),
   };
 
@@ -258,8 +354,11 @@ export class PilotCalendarComponent {
     onEventClick: this.onEventClick.bind(this),
   };
 
-  constructor(private ds: DataService) {
-    this.viewWeek();
+  constructor(
+    private ds: DataService,
+    private rxjsBehavior: BehaviorSubjectsService
+  ) {
+    this.viewDay();
   }
 
   ngAfterViewInit(): void {
@@ -277,6 +376,57 @@ export class PilotCalendarComponent {
         this.calendar.control.update(options);
       }
     );
+
+    this.rxjsBehavior.isStaffSelected$.subscribe((staff) => {
+      console.log(staff?.id, 'staff');
+
+      if (staff != null) {
+        this.ds.getResources().subscribe((resources) => {
+          let updatedResources = [...this.calendar.control.columns.list];
+          console.log(this.calendar.control.columns.list, 'Resources before');
+
+          if (staff?.checked) {
+            // Add resource if not already present
+            if (
+              !updatedResources.some((resource) => resource.id === staff.id)
+            ) {
+              const html = `
+                  <div class="custom-event-header">
+                    <p class="mb-0 font-semibold mr-1">${staff.name}</p>
+                    <div class="event-details">
+                      <div class="flex justify-content-end">
+                        <p class="m-0 mr-1 font-semibold">${staff.role}</p>
+                      </div>
+                      <div class="flex justify-content-end">
+                        <p class="m-0 mr-1 font-semibold">3/5 (8.00Hrs)</p>
+                      </div>
+                      <div class="flex justify-content-end">
+                        <p class="m-0 mr-1">10.00AM - 5.00PM</p>
+                      </div>
+                    </div>
+                  </div>`;
+
+              updatedResources.push({
+                id: staff.id,
+                name: staff.name,
+                html: html,
+              });
+            }
+          } else {
+            // Remove resource
+            updatedResources = updatedResources.filter(
+              (resource) => resource.id !== staff.id
+            );
+          }
+
+          console.log(updatedResources, 'Resources After');
+          // Update the calendar's resources
+          this.calendar.control.update({
+            columns: updatedResources,
+          });
+        });
+      }
+    });
   }
 
   loadEvents(): void {
@@ -292,6 +442,7 @@ export class PilotCalendarComponent {
     this.configDay.visible = true;
     this.configWeek.visible = false;
     this.configMonth.visible = false;
+    this.config.visible = true;
   }
 
   viewWeek(): void {
@@ -299,7 +450,7 @@ export class PilotCalendarComponent {
     this.configDay.visible = false;
     this.configWeek.visible = true;
     this.configMonth.visible = false;
-    this.config.visible = true;
+    this.config.visible = false;
   }
 
   viewMonth(): void {
@@ -307,10 +458,21 @@ export class PilotCalendarComponent {
     this.configDay.visible = false;
     this.configWeek.visible = false;
     this.configMonth.visible = true;
+    this.config.visible = false;
   }
-
+  onBeforeCellRender(args: any) {
+    if (args.cell.start.getHours() === 12) {
+      // console.log(args.cell.start.getHours(),"Hours");
+      args.cell.properties.business = false;
+      // args.cell.properties.backColor = "#abc";
+      // args.cell.properties.html = "Unavailable";
+      // args.cell.properties.cssClass = "unavailable";
+    }
+    if (args.cell.start.getDatePart() === DayPilot.Date.today()) {
+      args.cell.properties.backColor = '#fff8e1';
+    }
+  }
   onBeforeEventRender(args: any) {
-    console.log(args, 'onBeforeEventRender');
     let accountInfo =
       args.data.tags && args.data.tags.account
         ? `${args.data.tags.account}`
@@ -328,20 +490,19 @@ export class PilotCalendarComponent {
 
     let html = `
     <div class="custom-event">
-        <p class="mt-1 mb-0 font-semibold" style="margin-left:30px;">${args.data.text}</p>
+        <p class="mb-0 font-semibold" style="margin-left:15px;margin-top:2px">${args.data.text}</p>
         <div class="event-details">
-        <div class="flex justify-content-start">
-            <p class="m-0 font-semibold"> ${accountInfo}</p>
-        </div>
-          <div class="flex justify-content-end">
+          <div class="flex justify-content-start">
+              <p class="m-0 font-semibold"> ${accountInfo}</p>
+          </div>
+          <div class="flex justify-content-end mt-1">
             <p class="m-0 mr-1 font-semibold">${serviceInfo}</p>
           </div>
           <div class="flex justify-content-end">
             <p class="m-0 mr-1">${durationInfo}</p>
           </div>
         </div>
-    </div>
-`;
+    </div>`;
     args.data.html = html;
     var type = args.data.tags && args.data.tags.type;
     switch (type) {
@@ -369,8 +530,8 @@ export class PilotCalendarComponent {
     const dp = args.control;
     args.data.areas = [
       {
-        top: 9,
-        right: 18,
+        top: 5,
+        left: 7,
         width: 20,
         height: 20,
         icon: 'fas fa-circle-check',
@@ -378,27 +539,27 @@ export class PilotCalendarComponent {
         toolTip: 'Show context menu',
         action: 'ContextMenu',
       },
-      {
-        top: 9,
-        right: 0,
-        width: 20,
-        height: 20,
-        icon: 'fas fa-bars',
-        fontColor: '#000',
-        action: 'None',
-        toolTip: 'Delete event',
-        onClick: async (args: any) => {
-          dp.events.remove(args.source);
-        },
-      },
+      // {
+      //   top: 6,
+      //   left: 18,
+      //   width: 20,
+      //   height: 20,
+      //   icon: 'fas fa-bars',
+      //   fontColor: '#000',
+      //   action: 'None',
+      //   toolTip: 'Delete event',
+      //   onClick: async (args: any) => {
+      //     dp.events.remove(args.source);
+      //   },
+      // },
     ];
 
     args.data.areas.push({
       top: 3,
-      left: 5,
+      right: 3,
       width: 25,
       height: 25,
-      action: 'None',
+      action: 'ContextMenu',
       image: `https://picsum.photos/36/36?random=${args.data.id}`,
       style: 'border-radius: 50%; border: 2px solid #fff; overflow: hidden;',
     });
@@ -422,6 +583,7 @@ export class PilotCalendarComponent {
   }
 
   async onEventClick(args: any) {
+    this.open('CLIENT');
     const form = [
       { name: 'Text', id: 'text' },
       {
@@ -447,8 +609,17 @@ export class PilotCalendarComponent {
       return;
     }
 
-    const dp = args.control;
-
-    dp.events.update(modal.result);
+    // const dp = args.control;
+    // dp.events.update(modal.result);
   }
+
+  // Event Manager Side bar
+  view = '';
+
+  open(arg0: string) {
+    this.view = arg0;
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  sidebarVisible: boolean = false;
 }

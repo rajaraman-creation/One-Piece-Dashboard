@@ -1,4 +1,4 @@
-<div class="flex justify-content-center">
+<div class="flex justify-content-center pb-2">
   <p-selectButton
     [options]="justifyOptions"
     [(ngModel)]="value"
@@ -10,11 +10,12 @@
   </p-selectButton>
 </div>
 
-<div class="grid pt-3" *ngIf="value?.value == 'day'">
-  <div *ngFor="let data of dataSource">
+
+<ng-container *ngIf="value?.value == 'day'">
+  <div *ngFor="let data of dataSource" >
     <div
       class="card relative h-6rem p-3"
-      style="width: 240px; margin: 0px 0px 8px 7px"
+      style="width: 250px; margin: 0px 0px 8px 0px"
     >
       <span class="text-sm font-medium line-height-1">{{ data.name }}</span>
       <div class="flex justify-content-between">
@@ -45,67 +46,52 @@
       />
     </div>
   </div>
-</div>
+</ng-container>
 
-<div class="md:col-2" style="min-width: 250px" *ngIf="value?.value == 'staff'">
-  <div class="card p-0">
-    <div class="flex p-3" style="flex-direction: column">
-      <input type="text" pInputText placeholder="Find Staff" style="height: 1.8rem;"/>
-    </div>
 
-    <div class="pb-3 pl-2 cursor-pointer">
-      <div class="flex" style="gap: 5px;align-items: flex-start;">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-          styleClass="mr-1"
-          shape="circle"
-        />
-        <div class="flex" style="justify-content: space-between;
-        width: 100%;
-        align-items: center;">
-          <p class="m-0 text-600 mr-2">Alex</p>
-          <div style="scale: 0.8">
-            <p-tag severity="info" value="Manager" />
+<p-scrollPanel [style]="{ width: '100%', height: '50vh' }" *ngIf="value?.value == 'staff'">
+<div class="md:col-2 p-0" style="min-width: 250px">
+    <div class="card p-0">
+      <div class="flex p-3" style="flex-direction: column">
+        <input type="text" pInputText placeholder="Find Staff" style="height: 1.8rem;"/>
+      </div>
+  
+      @for (staff of staffService; track staff.id; let idx = $index, e = $even) {
+        <div class="pb-1 pl-2 mb-3 cursor-pointer" (click)="staffSelected(staff)" style="border-bottom: 1px solid rgba(128, 128, 128, 0.267);">
+          <div class="flex" style="gap: 5px;align-items: flex-start; " >
+            @if (staff?.details?.image) {
+              <p-avatar
+              [image]="staff.details.image"
+              styleClass="mr-1"
+              shape="circle"
+            />
+            } @else {
+              <p-avatar
+              image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+              styleClass="mr-1"
+              shape="circle"
+            />
+            } 
+            
+              <div class="flex w-full" style="justify-content: space-between;align-items: center;">
+                <div>
+                  <div style="scale: 1">
+                    <!-- <p-tag severity="info" [value]="staff.name" /> -->
+                  <p class="m-0 text-800 mr-2" style="font-size: .9rem;">{{staff.name}}</p>
+  
+                  </div>
+                  <p class="m-0 text-500 mr-2" style="font-size: .8rem;">{{staff.role}}</p>
+                </div>
+                <input type="checkbox" class="mr-3" [(ngModel)]="staff.checked">
+              </div>
           </div>
         </div>
-      </div>
+      }
+  
     </div>
-    <div class="pb-3 pl-2 cursor-pointer">
-      <div class="flex" style="gap: 5px;align-items: flex-start;">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-          styleClass="mr-1"
-          shape="circle"
-        />
-        <div class="flex" style="justify-content: space-between;
-        width: 100%;
-        align-items: center;">
-          <p class="m-0 text-600 mr-2">Alex</p>
-          <div style="scale: 0.8">
-            <p-tag severity="info" value="Manager" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pb-3 pl-2 cursor-pointer">
-      <div class="flex" style="gap: 5px;align-items: flex-start;">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-          styleClass="mr-1"
-          shape="circle"
-        />
-        <div class="flex" style="justify-content: space-between;
-        width: 100%;
-        align-items: center;">
-          <p class="m-0 text-600 mr-2">Alex</p>
-          <div style="scale: 0.8">
-            <p-tag severity="info" value="Manager" />
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
-</div>
+</p-scrollPanel>
 
 <!-- <div class="col-12 md:col-4">
     <div class="card relative h-6rem border-round-xl p-3">

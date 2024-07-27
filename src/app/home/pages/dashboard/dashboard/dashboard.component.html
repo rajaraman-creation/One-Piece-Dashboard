@@ -2,21 +2,20 @@
   <div class="w-full mb-2" style="width: 100%">
     <div style="display: flex; justify-content: start;">
       <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="values.value">
+        <mat-button-toggle value="right" aria-label="Text align left" style="padding: .2rem; width: 120px;">
+          <mat-icon>calendar_month</mat-icon>
+        </mat-button-toggle>
         <mat-button-toggle value="left" aria-label="Text align center" style="padding: .2rem;width: 120px;">
           <mat-icon>view_kanban</mat-icon>
-        </mat-button-toggle>
-        <mat-button-toggle value="right" aria-label="Text align left" style="padding: .2rem; width: 120px;">
-          <mat-icon>event_available</mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>
 
-  <div *ngIf="values.value=='right'">
+  <div *ngIf="values.value=='right'" >
     <!-- <app-calendar></app-calendar> -->
      <app-pilot-calendar></app-pilot-calendar>
   </div>
-
   <div style="margin-left: calc(5.5rem + 10.5rem)" *ngIf="values.value == 'left'">
     <div class="side_menu_op">
       <div class="card" style="padding: 1px;margin: 0px 0px 10px 0px;">
