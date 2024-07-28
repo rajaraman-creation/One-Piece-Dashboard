@@ -151,6 +151,10 @@ body {
   margin: 0;
 }
 
+.p-scrollpanel-content {
+   padding: 0 !important; 
+}
+
 :root {
   --mat-standard-button-toggle-background-color: var(--text-color);
   --mat-icon-color: var(--primary-color-text);

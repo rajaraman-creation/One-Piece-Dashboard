@@ -1,57 +1,37 @@
 import { Component, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
+import EventData = DayPilot.EventData;
 import {
   DayPilotCalendarComponent,
   DayPilotMonthComponent,
   DayPilotNavigatorComponent,
   DayPilot,
-  DayPilotModule,
 } from '@daypilot/daypilot-lite-angular';
 import { forkJoin } from 'rxjs';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { SidebarModule } from 'primeng/sidebar';
-import { EventManagerComponent } from '../event-manager/event-manager.component';
-import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
-import { DashboardMeterComponent } from '../dashboard-meter/dashboard-meter.component';
-import { DashboardMeter } from '../../service/interface.service';
-import { BehaviorSubjectsService } from '../../service/behaviour-subjects.service';
+import { DashboardMeter } from '../../../service/interface.service';
+import { BehaviorSubjectsService } from '../../../service/behaviour-subjects.service';
+import { EventBackUpService } from './event-back-up.service';
 @Component({
   selector: 'app-pilot-calendar',
-  standalone: true,
-  imports: [
-    DayPilotModule,
-    CommonModule,
-    FormsModule,
-    MatButtonModule,
-    MatIconModule,
-    SidebarModule,
-    EventManagerComponent,
-    MatButtonToggleModule,
-    DashboardMeterComponent,
-  ],
+  standalone:false,
   templateUrl: './pilot-calendar.component.html',
   styleUrl: './pilot-calendar.component.scss',
   providers: [DataService],
 })
 export class PilotCalendarComponent {
   businessChange() {
-    if(this.values.value != 'service'){
+    if (this.values.value != 'service') {
       this.viewMonth();
-    }else{
+    } else {
       this.viewDay();
       const from = new DayPilot.Date(this.config.startDate);
       const to = from.addDays(1);
-      forkJoin([this.ds.getEventss(from, to)]).subscribe(
-        (data) => {
-          const options = {
-            events: data[0],
-          };
-          this.calendar.control.update(options);
-        }
-      );
+      forkJoin([this.ds.getEventss(from, to)]).subscribe((data) => {
+        const options = {
+          events: data[0],
+        };
+        this.calendar.control.update(options);
+      });
     }
   }
 
@@ -114,37 +94,17 @@ export class PilotCalendarComponent {
       ],
     }),
 
-    onTimeRangeSelected: async (args) => {
-      const modal = await DayPilot.Modal.prompt(
-        'Create a new event:',
-        'Event 1'
-      );
-
-      const calendar = this.calendar.control;
-      calendar.clearSelection();
-      if (modal.canceled) {
-        return;
-      }
-
-      calendar.events.add({
-        start: args.start,
-        end: args.end,
-        id: DayPilot.guid(),
-        text: modal.result,
-        resource: args.resource,
-      });
-    },
     onBeforeHeaderRender: (args) => {
       const data = args.column.data;
       const header = args.header;
       header.verticalAlignment = 'top';
-
+      
       // if (data.tags.image) {
-      //   args.header.areas = [
-      //     {
-      //       left: 'calc(50% - 30px)',
-      //       bottom: 10,
-      //       height: 60,
+        //   args.header.areas = [
+          //     {
+            //       left: 'calc(50% - 30px)',
+            //       bottom: 10,
+            //       height: 60,
       //       width: 60,
       //       image: data.tags.image,
       //       style:
@@ -155,38 +115,38 @@ export class PilotCalendarComponent {
     },
     onBeforeEventRender: (args) => {
       let accountInfo =
-        args.data.tags && args.data.tags.account
+      args.data.tags && args.data.tags.account
           ? `${args.data.tags.account}`
           : '';
-      let serviceInfo =
+          let serviceInfo =
         args.data.tags && args.data.tags.service
-          ? `${args.data.tags.service}`
-          : '';
+        ? `${args.data.tags.service}`
+        : '';
       let durationInfo =
         args.data.tags && args.data.tags.duration
           ? `${args.data.tags.duration}`
           : '';
       let statusInfo =
-        args.data.tags && args.data.tags.status
-          ? `${args.data.tags.status}`
-          : '';
-
+      args.data.tags && args.data.tags.status
+      ? `${args.data.tags.status}`
+      : '';
+      
       let html = `
-    <div class="custom-event" style="font-size:.8rem">
-        <p class="mb-0 font-semibold">${args.data.text}</p>
-        <div class="event-details">
-          <div class="flex justify-content-start">
-              <p class="m-0 font-semibold"> ${accountInfo}</p>
-          </div>
-          <div class="flex justify-content-end mt-1">
-            <p class="m-0 mr-1 font-semibold">${serviceInfo}</p>
-          </div>
-          <div class="flex justify-content-end">
-            <p class="m-0 mr-1">${durationInfo}</p>
-          </div>
-        </div>
-    </div>
-`;
+      <div class="custom-event" style="font-size:.8rem">
+      <p class="mb-0 font-semibold">${args.data.text}</p>
+      <div class="event-details">
+      <div class="flex justify-content-start">
+      <p class="m-0 font-semibold"> ${accountInfo}</p>
+      </div>
+      <div class="flex justify-content-end mt-1">
+      <p class="m-0 mr-1 font-semibold">${serviceInfo}</p>
+      </div>
+      <div class="flex justify-content-end">
+      <p class="m-0 mr-1">${durationInfo}</p>
+      </div>
+      </div>
+      </div>
+      `;
       args.data.html = html;
       args.data.areas = [
         {
@@ -201,7 +161,39 @@ export class PilotCalendarComponent {
         },
       ];
     },
+    onTimeRangeSelected:this.onEventRangeSelected.bind(this),
+    onEventClick: this.onEventClick.bind(this),
+    onEventMoved: (args) => this.onEventMoved(args),
+    onEventResized: (args) => this.onEventResized(args),
   };
+  
+  async onEventRangeSelected(args:any){
+    this.open('CLIENT');
+    console.log(args);
+
+    const newEvent:EventData ={
+      id:DayPilot.guid(),
+      text:"Choose a Pet",
+      start:args.start
+      ,end:args.end,
+      resource:args.resource
+    }
+
+    setTimeout(() => {
+      this.selectedEvent = newEvent;
+    }, 3000);
+    
+    const calendar = this.calendar.control;
+    calendar.clearSelection();
+
+    calendar.events.add({
+      start: args.start,
+      end: args.end,
+      id: DayPilot.guid(),
+      text:"Add",
+      resource: args.resource,
+    });
+  }
 
   @ViewChild('day') day!: DayPilotCalendarComponent;
   @ViewChild('week') week!: DayPilotCalendarComponent;
@@ -356,7 +348,8 @@ export class PilotCalendarComponent {
 
   constructor(
     private ds: DataService,
-    private rxjsBehavior: BehaviorSubjectsService
+    private rxjsBehavior: BehaviorSubjectsService,
+    private eventBackUp: EventBackUpService
   ) {
     this.viewDay();
   }
@@ -374,6 +367,9 @@ export class PilotCalendarComponent {
           events: data[1],
         };
         this.calendar.control.update(options);
+        // Set Data For Event Back Up
+        const eventBackUpData = JSON.parse(JSON.stringify(data[1]));
+        this.eventBackUp.createBackUpData(eventBackUpData);
       }
     );
 
@@ -580,36 +576,31 @@ export class PilotCalendarComponent {
     );
   }
 
+  selectedEvent!: EventData;
+
   async onEventClick(args: any) {
     this.open('CLIENT');
-    const form = [
-      { name: 'Text', id: 'text' },
-      {
-        name: 'Start',
-        id: 'start',
-        dateFormat: 'MM/dd/yyyy',
-        type: 'datetime',
-      },
-      { name: 'End', id: 'end', dateFormat: 'MM/dd/yyyy', type: 'datetime' },
-      {
-        name: 'Color',
-        id: 'backColor',
-        type: 'select',
-        options: this.ds.getColors(),
-      },
-    ];
 
-    const data = args.e.data;
+    setTimeout(() => {
+      this.selectedEvent = args.e.data;
+    }, 3000);
 
-    const modal = await DayPilot.Modal.form(form, data);
-
-    if (modal.canceled) {
-      return;
-    }
+    // console.log( this.selectedEvent );
 
     // const dp = args.control;
     // dp.events.update(modal.result);
   }
+
+  // async onEventMoved(args: any) {
+  //   console.log('Event moved:',args);
+  //   console.log("Event ID: " + args.e.id());
+  //   console.log("Old Start: " + args.e.start());
+  //   console.log("Old End: " + args.e.end());
+  //   console.log("New Start: " + args.newStart);
+  //   console.log("New End: " + args.newEnd);
+  //   // You can also make an AJAX call here to save the changes to the server
+  //   // e.g., using fetch or XMLHttpRequest
+  // }
 
   // Event Manager Side bar
   view = '';
@@ -620,4 +611,58 @@ export class PilotCalendarComponent {
   }
 
   sidebarVisible: boolean = false;
+
+  confirmationDialogVisible = false;
+  pendingChanges: any = null;
+  originalTimes: { [key: string]: { start: string; end: string } } = {};
+
+  ngOnInit(): void {}
+
+  onEventMoved(args: any) {
+    this.pendingChanges = args;
+    this.confirmationDialogVisible = true;
+  }
+  onEventResized(args: any) {
+    this.pendingChanges = args;
+    this.confirmationDialogVisible = true;
+  }
+
+  confirmChanges() {
+    let original: EventData | undefined = this.eventBackUp.getBackUpData(
+      this.pendingChanges.e.id()
+    );
+    if (this.pendingChanges && original != undefined) {
+      const filter = (e: DayPilot.Event) => e.id() == original.id;
+      let event = this.calendar.control.events.find(filter);
+      if (event) {
+        original.start = event.start();
+        original.end = event.end();
+        original.resource = event.resource();
+      }
+      console.log(this.eventBackUp.getBackUpData(this.pendingChanges.e.id()));
+      this.pendingChanges = null;
+    }
+
+    this.confirmationDialogVisible = false;
+  }
+
+  discardChanges() {
+    let original: EventData | undefined = this.eventBackUp.getBackUpData(
+      this.pendingChanges.e.id()
+    );
+
+    if (this.pendingChanges && original != undefined) {
+      const filter = (e: DayPilot.Event) => e.id() == original.id;
+      let event = this.calendar.control.events.find(filter);
+
+      if (event && original?.start && original.end) {
+        event.data.start = original.start;
+        event.data.end = original.end;
+        event.data.resource = original.resource;
+      }
+      this.calendar.control.events.update(event);
+    }
+    this.confirmationDialogVisible = false;
+    this.pendingChanges = null;
+  }
 }

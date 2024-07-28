@@ -6,7 +6,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import { TagModule } from 'primeng/tag';
-import { DataService } from '../pilot-calendar/data.service';
+import { DataService } from '../calendar/pilot-calendar/data.service';
 import { BehaviorSubjectsService } from '../../service/behaviour-subjects.service';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 export interface Staff{

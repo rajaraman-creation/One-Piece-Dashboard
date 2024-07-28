@@ -1,0 +1,54 @@
+<ng-container *ngIf="buffer">
+  <div class="frame">
+    <div class="center">
+      <div class="dot-1"></div>
+      <div class="dot-2"></div>
+      <div class="dot-3"></div>
+    </div>
+  </div>
+</ng-container>
+
+<p>{{event | json}}</p>
+
+<div *ngIf="event != undefined">
+    <p>Entity Name {{event.text}}</p>
+    <p>Account User {{event.tags?.account}}</p>
+    <p>Service {{event.tags?.service}}</p>
+    <p>From {{convertDate(event.start)}} To {{event.end}}</p>
+</div>
+
+<mat-stepper orientation="horizontal">
+  <mat-step>
+    <ng-template matStepLabel>Pet Information</ng-template>
+    <ng-template matStepContent>
+      <div style="height: 1000px">
+        <!-- Search -->
+        <app-search-box></app-search-box>
+        <p>This content was rendered lazily</p>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </ng-template>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Service Info</ng-template>
+    <ng-template matStepContent>
+      <p>This content was also rendered lazily</p>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Appointment Info</ng-template>
+    <ng-template matStepContent>
+      <p>This content was also rendered lazily</p>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Completion</ng-template>
+    <p>This content was rendered eagerly</p>
+    <button mat-button matStepperPrevious>Back</button>
+  </mat-step>
+</mat-stepper>

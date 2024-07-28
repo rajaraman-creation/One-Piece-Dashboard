@@ -39,11 +39,17 @@
 
 </div>
 
-<p-sidebar [(visible)]="sidebarVisible"  [style]="{ width: '40%', margin: 'auto' }" position="right" >
+<div *ngIf="confirmationDialogVisible" class="confirmation-dialog">
+  <p>Do you want to save the changes?</p>
+  <button (click)="confirmChanges()">Confirm</button>
+  <button (click)="discardChanges()">Discard</button>
+</div>
+
+<p-sidebar [(visible)]="sidebarVisible"  [style]="{ width: '40%', margin: 'auto' }" position="right" dismissible="false" [modal]="false">
   <ng-template pTemplate="header">
-      <span class="font-semibold text-xl">Sidebar</span>
+      <span class="font-semibold text-xl">Event Manager</span>
   </ng-template>
   <ng-container *ngIf="view=='CLIENT' && sidebarVisible">
-    <app-event-manager></app-event-manager>
+    <app-event-manager [event]="selectedEvent"></app-event-manager>
   </ng-container>
 </p-sidebar>
